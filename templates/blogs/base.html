@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>{% block title %}MyBlog{% endblock %}</title>
+	<style type="text/css">
+@font-face {
+	font-family: myFirstFont;
+	src: url('/static/fonts/Sansation_Bold.ttf'),
+		 url('/static/fonts/Sansation_Bold.eot'); /* IE9+ */
+	 font-weight: bold;
+}
+h3 {
+	font-family: myFirstFont;
+	text-shadow: 5px 5px 5px #FF0000;
+	font-family: myFirstFont;
+}
+
+		.title {
+			border-style: dashed dashed dashed dashed;
+			background-color: gray;
+			padding: 20px;
+			border-width: 1px;
+			width: 700px
+		}
+		.time {
+			background-color: red;
+			border-style: dotted dotted dotted dotted;
+			border-width: 1px;
+			width: 700px
+		}
+		.body {
+			background-color: blue;
+			border-style: dashed dashed dashed dashed;
+			border-width: 1px;
+			width: 700px
+		}
+	</style>
+</head>
+
+<body>
+    <div id="sidebar"> {% block sidebar %} {% endblock %} </div>
+    <div id="container">
+        <div id="menu">
+            {% block nav-global %}
+
+                <!-- MENU -->
+                <h3>MyBlog</h3>
+                {% if user.is_staff %}
+                <a href="{% url admin:index %}">Admin</a>
+                <a href="{% url admin:blogs_post_add %}">Add post</a>
+                {% endif %}
+
+            {% endblock %}
+        </div>
+
+        <div id="content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+</body>
+</html>
