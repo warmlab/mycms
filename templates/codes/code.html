@@ -1,0 +1,41 @@
+{% extends "codes/base.html" %}
+{% block style %}
+<style type="text/css">
+	div.comment {
+		border-style:dashed;
+		border-width:1px;
+		border-color:#98bf21;
+	}
+</style>
+{% endblock %}
+
+{% block content %}
+	<h1><span class="color_h1">{{ code.title }}</span></h1>
+	<div><span class="time">{{ code.created }}</span></div>
+	<hr/>
+	<div>{{ code.body|linebreaks }}</div>
+	<hr/>
+	<hr/>
+
+{% if comments %}
+    <h2><span class="color_h1">Comments:</span></h2>
+{% for comment in comments %}
+    <div class="comment">
+	        <div style="padding-left:2px;font-size:100%;color:#191970">{{ comment.author }}<span class="time"> - {{ comment.created }}</span></div>
+	        <div style="padding-left:2px;font-size:90%;color:#708090;">{{ comment.body|linebreaks }}</div>
+    </div>
+	<br/>
+{% endfor %}
+{% endif %}
+
+<h2><span class="color_h1">Add a comment:</span></h2>
+<!-- Comment form  -->
+<form action="{% url codes.views.add_comment code.id %}" method="POST">{% csrf_token %}
+    <div>
+	        <p>Name: {{ form.author }}</p>
+			<p>Email: {{ form.email }}</p>
+		    <p>{{ form.body|linebreaks }}</p>
+    </div>
+    <div id="submit"><input type="submit" value="Submit"></div>
+</form>
+{% endblock %}

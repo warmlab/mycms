@@ -9,9 +9,9 @@ urlpatterns = patterns('',
     # url(r'^$', 'mycms.views.home', name='home'),
     # url(r'^mycms/', include('mycms.foo.urls')),
 	url(r'^$', 'home.views.home'),
-	url(r'^blog/$', 'blogs.views.main'),
-	url(r'^blog/(\d+)/$', 'blogs.views.post'),
-	url(r'^blog/add_comment/(\d+)/$', 'blogs.views.add_comment'),
+	url(r'^codes/$', 'codes.views.list'),
+	url(r'^codes/(\d+)/$', 'codes.views.code'),
+	url(r'^codes/add_comment/(\d+)/$', 'codes.views.add_comment'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

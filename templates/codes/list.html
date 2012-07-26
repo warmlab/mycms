@@ -1,0 +1,28 @@
+{% extends "codes/base.html" %}
+
+{% block content %}
+	<div class="chapter">
+	<div class="prev"><a class="chapter" href="/default.asp">&laquo; Newer</a></div>
+	<div class="next"><a class="chapter" href="css_selectors.asp">Older &raquo;</a></div>
+	</div>
+	<hr />
+	<br/>
+	{% for code in code_list %}
+	<div style="border-style:solid;border-radius:15px;box-shadow: 10px 10px 5px #888888;border-color:#F8F8F8;background-color:#F8F8F8;">
+	<h1><a href="{% url codes.views.code code.pk %}" class="chapter">{{ code.title }}</a></h1>
+	<h6><span style="color:#909090">{{ code.created }}</span></h6>
+	<hr/>
+	<p class="intro"><img style="float:left;margin-right:6px" alt="Note" src="/images/wl_note.png" /> 
+		{{ code.body|slice:":300"|linebreaks }}......
+	</p>
+	{#<div><a href="{% url codes.views.code code.pk %}">Comments</a></div>#}
+	</div>
+	<br/>
+	{% endfor %}
+	<hr/>
+	<div class="chapter">
+	<div class="prev"><a class="chapter" href="/default.asp">&laquo; Newer</a></div>
+	<div class="next"><a class="chapter" href="css_selectors.asp">Older &raquo;</a></div>
+	</div>
+	<hr/>
+{% endblock %}

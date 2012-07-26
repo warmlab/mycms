@@ -4,34 +4,47 @@ from django.forms import ModelForm
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
+class Tag(models.Model):
+	name = models.CharField(max_length=63);
+	desc = models.TextField()
+
+	def __unicode__(self):
+		return self.name
+
+class TagAdmin(admin.ModelAdmin):
+	search_field = ['name']
+
 # Create your models here.
-class Post(models.Model):
-	title = models.CharField(max_length=150)
+class Code(models.Model):
+	title = models.CharField(max_length=127)
 	body = models.TextField()
 	created = models.DateTimeField(auto_now_add=True)
+	tag = models.ForeignKey(Tag)
 
 	def __unicode__(self):
 		return self.title
 
-class PostAdmin(admin.ModelAdmin):
+class CodeAdmin(admin.ModelAdmin):
 	search_field = ['title']
 
 class Comment(models.Model):
-	created = models.DateTimeField(auto_now_add=True)
-	author = models.CharField(max_length=60)
+	title = models.CharField(max_length=63);
+	author = models.CharField(max_length=63)
+	email = models.EmailField()
 	body = models.TextField()
-	post = models.ForeignKey(Post)
+	created = models.DateTimeField(auto_now_add=True)
+	code = models.ForeignKey(Code)
 
 	def __unicode__(self):
-		return unicode("%s: %s" % (self.post, self.body[:60]))
+		return unicode("%s: %s" % (self.code, self.body[:63]))
 
 class CommentAdmin(admin.ModelAdmin):
-	display_fields = ["post", "author", "created"]
+	display_fields = ["title", "code", "author", "created"]
 
 class CommentForm(ModelForm):
 	class Meta:
 		model = Comment
-		exclude = ["post"]
+		exclude = ["code"]
 
 def add_comment(request, pk):
 	"""Add a new comment."""
@@ -41,14 +54,15 @@ def add_comment(request, pk):
 		author = "Anonymous"
 		if p["author"]: author = p["author"]
 
-		comment = Comment(post=Post.objects.get(pk=pk))
+		comment = Comment(code=Code.objects.get(pk=pk))
 		cf = CommentForm(p, instance=comment)
 		cf.fields["author"].required = False
 
 		comment = cf.save(commit=False)
 		comment.author = author
 		comment.save()
-	return HttpResponseRedirect(reverse("blogs.views.post", args=[pk]))
+	return HttpResponseRedirect(reverse("codes.views.code", args=[pk]))
 
-admin.site.register(Post, PostAdmin)
+admin.site.register(Tag, TagAdmin)
+admin.site.register(Code, CodeAdmin)
 admin.site.register(Comment, CommentAdmin)
