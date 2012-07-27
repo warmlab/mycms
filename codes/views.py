@@ -17,7 +17,7 @@ def list(request):
 	except (InvalidPage, EmptyPage):
 		codes = paginator.page(paginator.num_pages)
 
-	return render_to_response("codes/list.html", dict(user=request.user, code_list=codes.object_list))
+	return render_to_response("codes/list.html", dict(codes=codes, user=request.user, code_list=codes.object_list))
 
 def code(request, pk):
 	code = Code.objects.get(pk=int(pk))

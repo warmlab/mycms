@@ -1,15 +1,28 @@
 {% extends "codes/base.html" %}
+{% block style %}
+<style type="text/css">
+	a.title:link    {text-decoration:none;color:#98bf21;background-color:transparent;text-shadow: 5px 5px 5px #D8D8D8;}
+	a.title:visited {text-decoration:none;color:#98bf21;background-color:transparent;text-shadow: 5px 5px 5px #D8D8D8;}
+	a.title:hover   {text-decoration:underline;color:#98bf21;background-color:transparent;text-shadow: 5px 5px 5px #D8D8D8;}
+	a.title:active  {text-decoration:none;color:#98bf21;background-color:transparent;text-shadow: 5px 5px 5px #D8D8D8;}
+		div.chapter 
+		{
+		font-size:90%;margin:0px;padding:0px;width:100%;height:20px;text-align:right;color:#98bf21;
+		}
+		div.page {width:40%;float:right;text-align:right;color:#98bf21;}
+		div.chapter div.prev {width:40%;float:left;text-align:left;}
+		div.chapter div.next {width:40%;float:right;text-align:right;}
+		a.chapter:link    {text-decoration:none;color:#98bf21;background-color:transparent}
+		a.chapter:visited {text-decoration:none;color:#98bf21;background-color:transparent}
+		a.chapter:hover   {text-decoration:underline;color:#98bf21;background-color:transparent}
+		a.chapter:active  {text-decoration:none;color:#98bf21;background-color:transparent}
+</style>
+{% endblock %}
 
 {% block content %}
-	<div class="chapter">
-	<div class="prev"><a class="chapter" href="/default.asp">&laquo; Newer</a></div>
-	<div class="next"><a class="chapter" href="css_selectors.asp">Older &raquo;</a></div>
-	</div>
-	<hr />
-	<br/>
 	{% for code in code_list %}
-	<div style="border-style:solid;border-radius:15px;box-shadow: 10px 10px 5px #888888;border-color:#F8F8F8;background-color:#F8F8F8;">
-	<h1><a href="{% url codes.views.code code.pk %}" class="chapter">{{ code.title }}</a></h1>
+	<div class="content">
+	<h1><a href="{% url codes.views.code code.pk %}" class="title">{{ code.title }}</a></h1>
 	<h6><span style="color:#909090">{{ code.created }}</span></h6>
 	<hr/>
 	<p class="intro"><img style="float:left;margin-right:6px" alt="Note" src="/images/wl_note.png" /> 
@@ -19,10 +32,17 @@
 	</div>
 	<br/>
 	{% endfor %}
+	{% if code_list and codes.paginator.num_pages > 1 %}
 	<hr/>
 	<div class="chapter">
-	<div class="prev"><a class="chapter" href="/default.asp">&laquo; Newer</a></div>
-	<div class="next"><a class="chapter" href="css_selectors.asp">Older &raquo;</a></div>
+		{% if codes.has_previous %}
+		<a class="chapter" href="?page={{ codes.previous_page_number }}">&laquo; Newer</a>
+		{% endif %}
+		&nbsp;Page {{ codes.number }} of {{ codes.paginator.num_pages }}&nbsp;
+		{% if codes.has_next %}
+		<a class="chapter" href="?page={{ codes.next_page_number }}">Older &raquo;</a>
+		{% endif %}
 	</div>
 	<hr/>
+	{% endif %}
 {% endblock %}
