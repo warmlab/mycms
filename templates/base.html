@@ -131,14 +131,18 @@
 		<a class="topnav" href="/about" target="_top">ABOUT</a>
 	</div>
 	</div>
+	{% comment %}
 	<div style="width:960px;height:94px;position:relative;margin-left:auto;margin-right:auto;margin:0px;padding:0px;overflow:hidden">
 		<span>ads</span>
 	</div>
+	{% endcomment %}
 	<div style="width:960px;padding:0px;margin:0px;">
 	<div id="leftcolumn" style="width:170px;margin:0;padding:0;margin-top:5px;float:left;">
+	{% block leftcolumn %}
 	<h2 class="left"><span class="left_h2">CSS</span> Reference</h2>
 	<a target="_top" href="default.asp" style='font-weight:bold;'>CSS Reference</a><br/>
 	<a target="_top" href="css_selectors.asp">CSS Selectors</a><br/>
+	{% endblock %}
 	</div>
 
 	<div style="width:634px;margin:0px;padding:0px;background-color:#ffffff;color:#000000;padding-bottom:8px;padding-right:5px;padding-top:4px;float:left;">
@@ -147,8 +151,10 @@
 
 	<div style="width:470px;margin:auto;margin-top:5px;">
 	</div>
+	{% comment %}
 	<div id="rightcolumn" style="width:150px;margin:0px;padding:0px;float:left">
 	</div>
+	{% endcomment %}
 	</div>
 	<br/>
 	</div>
