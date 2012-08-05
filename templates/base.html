@@ -1,6 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html>
 <head>
 	<title>{% block title %}WarmLab{% endblock %}</title>
 	<style type="text/css">
@@ -118,18 +117,26 @@
 	</div>
 	</div>
 	<div id="topnav" style="clear:both;width:960px;height:25px;">
-	<div style="float:left;width:400px;word-spacing:12px;font-size:90%;padding-left:15px;padding-top:6px;white-space:nowrap;text-align:left;">
-		<a class="topnav" href="/" target="_top">HOME </a>
-		<a class="topnav" href="/codes" target="_top">CODES </a>
+{#<div style="float:left;width:400px;word-spacing:12px;font-size:90%;padding-left:15px;padding-top:6px;white-space:nowrap;text-align:left;">#}
+	<nav>
+		<ul>
+		<li><a class="topnav" href="/" target="_top">HOME </a></li>
+		<li><a class="topnav" href="/codes" target="_top">CODES </a></li>
 		{% comment %}
 		<a class="topnav" href="/art" target="_top">ART </a>
 		<a class="topnav" href="/health" target="_top">HEALTH </a>
 		{% endcomment %}
-		<a class="topnav" href="/more" target="_top">MORE...</a>
-	</div>
-	<div style="float:right;width:280px;word-spacing:6px;font-size:80%;padding-right:13px;padding-top:7px;color:#888888;white-space:nowrap;text-align:right;">
-		<a class="topnav" href="/about" target="_top">ABOUT</a>
-	</div>
+		<li><a class="topnav" href="/more" target="_top">MORE...</a></li>
+		</ul>
+	</nav>
+{#</div>#}
+{#<div style="float:right;width:280px;word-spacing:6px;font-size:80%;padding-right:13px;padding-top:7px;color:#888888;white-space:nowrap;text-align:right;">#}
+	<nav>
+		<ul>
+		<li><a class="topnav" href="/about" target="_top">ABOUT</a></li>
+		</ul>
+	</nav>
+{#</div>#}
 	</div>
 	{% comment %}
 	<div style="width:960px;height:94px;position:relative;margin-left:auto;margin-right:auto;margin:0px;padding:0px;overflow:hidden">
