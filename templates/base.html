@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head lang="en">
+	<meta charset=utf-8 />
 	<title>{% block title %}WarmLab{% endblock %}</title>
 	<style type="text/css">
 		body
@@ -107,6 +108,14 @@
 		}
 	</style>
 	{% block style %}{% endblock %}
+	<!-- [if lt IE 9]>
+	<script>
+	var e=("footer,article,canvas,datalist,details,aside,abbr,figure,header,hgroup,mark,menu,meter,nav,output,progress,secsion,time,video,audio").split(',');
+	for (var=0;i<e.length;i++) {
+		document.createElement(e[i]);
+	}
+	</script>
+	<![endif]-->
 <head>
 <body>
 	<div style="position:relative;width:100%;margin-top:0px;margin-bottom:0px;">
@@ -117,26 +126,18 @@
 	</div>
 	</div>
 	<div id="topnav" style="clear:both;width:960px;height:25px;">
-{#<div style="float:left;width:400px;word-spacing:12px;font-size:90%;padding-left:15px;padding-top:6px;white-space:nowrap;text-align:left;">#}
-	<nav>
-		<ul>
-		<li><a class="topnav" href="/" target="_top">HOME </a></li>
-		<li><a class="topnav" href="/codes" target="_top">CODES </a></li>
+<div style="float:left;width:400px;word-spacing:12px;font-size:90%;padding-left:15px;padding-top:6px;white-space:nowrap;text-align:left;">
+		<a class="topnav" href="/" target="_top">HOME </a>
+		<a class="topnav" href="/codes" target="_top">CODES </a>
 		{% comment %}
 		<a class="topnav" href="/art" target="_top">ART </a>
 		<a class="topnav" href="/health" target="_top">HEALTH </a>
 		{% endcomment %}
-		<li><a class="topnav" href="/more" target="_top">MORE...</a></li>
-		</ul>
-	</nav>
-{#</div>#}
-{#<div style="float:right;width:280px;word-spacing:6px;font-size:80%;padding-right:13px;padding-top:7px;color:#888888;white-space:nowrap;text-align:right;">#}
-	<nav>
-		<ul>
-		<li><a class="topnav" href="/about" target="_top">ABOUT</a></li>
-		</ul>
-	</nav>
-{#</div>#}
+		<a class="topnav" href="/more" target="_top">MORE...</a>
+</div>
+<div style="float:right;width:280px;word-spacing:6px;font-size:80%;padding-right:13px;padding-top:7px;color:#888888;white-space:nowrap;text-align:right;">
+		<a class="topnav" href="/about" target="_top">ABOUT</a>
+</div>
 	</div>
 	{% comment %}
 	<div style="width:960px;height:94px;position:relative;margin-left:auto;margin-right:auto;margin:0px;padding:0px;overflow:hidden">
@@ -166,26 +167,22 @@
 	<br/>
 	</div>
 
-	<div style="width:100%;clear:both;margin:0;padding:0;background-color:transparent;background-image:url('/images/gradientbottom.jpg');background-repeat:repeat-x;position:relative;">
-	<div id="footer" style="width:960px;margin-left:auto;margin-right:auto;height:110px;">
-	<div style="float:left;width:200px;text-align:left;padding-left:3px;padding-top:11px;"><a href="http://www.warmlab.com"><img style="border:0" src="/images/warmlabcom_gray.gif" alt="WarmLab.com" /></a>
-	</div>
-	<div style="word-spacing:6px;font-size:80%;padding-right:12px;padding-top:19px;float:right;width:600px;text-align:right;">
+	<footer style="width:100%;clear:both;margin:0;padding:0;background-color:transparent;position:relative;background-image: linear-gradient(top, #fff, #efefef);">
+	<div id="footer" style="width:960px;margin-left:auto;margin-right:auto;padding-top:15px;">
+	<nav style="word-spacing:6px;font-size:80%;padding-right:0px;padding-top:0px;float:right;width:100%;text-align:right;background-color:#eeeeee;height:25px;">
+	<ul>
 	<a href="/" target="_top">HOME</a> |
 	<a href="#top" target="_top">TOP</a> |
-	<a href="/about" target="_top">ABOUT</a>
+	<a href="/about" target="_top" style="padding-right:13px">ABOUT</a>
+	</ul>
+	</nav>
+	<footer style="padding-top:13px;color:#404040;clear:both;">
+	<aside style="float:left;width:200px;text-align:left;padding-left:3px;padding-top:11px;"><a href="http://www.warmlab.com"><img style="border:0" src="/images/warmlab_gray.png" alt="WarmLab.com" /></a>
+	</aside>
+	<article>WarmLab is my laboratory.</article>
+	</footer>
 	</div>
-	<div style="padding-top:13px;color:#404040;clear:both;">
-	WarmLab is optimized for learning, testing, and training. Examples might be simplified to improve reading and basic understanding.<br />
-	Tutorials, references, and examples are constantly reviewed to avoid errors, but we cannot warrant full correctness of all content.<br />
-	While using this site, you agree to have read and accepted our
-	<a href="/about/about_copyright.asp">terms of use</a> and
-
-	<a href="/about/about_privacy.asp">privacy policy</a>.<br />
-	<a href="/about/about_copyright.asp">Copyright 1999-2012</a> by Refsnes Data. All Rights Reserved.
-	</div>
-	</div>
-	</div>
+	</footer>
 	</div>
 </body>
 </html>
