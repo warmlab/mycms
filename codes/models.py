@@ -28,9 +28,10 @@ class LangAdmin(admin.ModelAdmin):
 class Code(models.Model):
 	title = models.CharField(max_length=127)
 	body = models.TextField()
+	nice = models.SmallIntegerField(default=5)
 	created = models.DateTimeField(auto_now_add=True)
 	tag = models.ForeignKey(Tag)
-	lang = models.ForeignKey(Lang);
+	lang = models.ForeignKey(Lang)
 
 	def __unicode__(self):
 		return self.title

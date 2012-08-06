@@ -1,0 +1,8 @@
+from django.conf.urls import patterns, include, url
+
+urlpatterns = patterns('codes.views',
+	url(r'^$', 'list'),
+	url(r'^tag/(\d+)/$', 'list'),
+	url(r'^(\d+)/$', 'code'),
+	url(r'^add_comment/(\d+)/$', 'add_comment'),
+)
