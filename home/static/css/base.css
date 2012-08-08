@@ -1,0 +1,102 @@
+body
+{
+font-size:12px;
+color:#000000;
+background-color:#ffffff;
+margin:0px;
+background-image:url('/images/gradientfromtop.gif');
+background-repeat:repeat-x;
+}
+
+body,p,h1,h2,h3,h4,table,td,th,ul,ol,textarea,input
+{
+font-family:verdana,helvetica,arial,sans-serif;
+}
+h2.left
+{
+color:#404040;
+background-color:#ffffff;
+font-size:120%;
+margin-bottom:4px;
+padding-bottom:0px;
+margin-top:0px;
+padding-top:0px;
+font-weight:bold;
+}
+hr
+{
+background-color:#d4d4d4;
+color:#d4d4d4;
+height:1px;
+border:0px;
+clear:both;
+}
+a:link,a:visited {color:#900B09; background-color:transparent}
+a:hover,a:active {color:#FF0000; background-color:transparent}
+a.topnav:link,a.topnav:visited {color:#555555;text-decoration:none;}
+a.topnav:hover,a.topnav:active {color:#ff4800;text-decoration:none;}
+
+p.intro
+{
+font-size:120%;
+color:#404040;
+background-color:transparent;
+margin-top:10px;
+}
+
+#topnav {
+	margin:0;
+	padding:0;
+	margin-top:5px;
+	margin-bottom:10px;
+	background-color:#eeeeee;
+	background-image:url('/images/topnav_bg.png');
+	background-position:bottom;
+	background-repeat:repeat-x;
+}
+span.color_h1 {color:#92B901;}
+span.left_h2 {color:#92B901;}
+
+#leftcolumn a:link,#leftcolumn a:visited {text-decoration:none;color:black;background-color:transparent}
+#leftcolumn a:hover,#leftcolumn a:active {text-decoration:underline;color:black;background-color:transparent}
+
+#rightcolumn a:link,#rightcolumn a:visited {text-decoration:none;color:#900B09;background-color:transparent}
+#rightcolumn a:hover,#rightcolumn a:active {text-decoration:underline;color:#FF0000;background-color:transparent}
+
+#footer
+{
+margin:0px;
+padding:20px;
+padding-top:0;
+padding-bottom:10px;
+color:#909090;
+font-size:90%;
+text-align:center;
+}
+#footer a:link,#footer a:visited {text-decoration:none;color:#404040;background-color:transparent}
+#footer a:hover,#footer a:active {text-decoration:underline;color:#404040;background-color:transparent}
+
+h1 {font-size:190%;margin-top:0px;font-weight:normal}
+h2 {font-size:160%;margin-top:10px;margin-bottom:10px;font-weight:normal}
+h3 {font-size:120%;font-weight:normal}
+h4 {font-size:100%;}
+h5 {font-size:90%;}
+h6 {font-size:80%;}
+
+h1,h2,h3,h4,h5,h6
+{
+background-color:transparent;
+color:#000000;
+}
+.time {
+	color: #909090;
+	font-size: 80%;
+	//padding-left: 20px;
+}
+div.content {
+	border-style:solid;
+	border-radius:15px;
+	box-shadow: 10px 10px 5px #888888;
+	border-color:#F8F8F8;
+	background-color:#F8F8F8;
+}

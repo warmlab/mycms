@@ -21,7 +21,8 @@ def taglist(request, pk):
 
 	return render_to_response("codes/list.html", dict(tags=tags, codes=codes, user=request.user, code_list=codes.object_list))
 
-def list(request, pk=None):
+def list(request):
+	pk = None
 	tags = Tag.objects.all()
 
 	if pk is None:
