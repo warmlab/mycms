@@ -4,6 +4,6 @@
 {#<a target="_top" href="default.asp" style='font-weight:bold;'>CSS Reference</a><br/>#}
 {% load url from future %}
 {% for tag in tags %}
-<a target="_top" href="{% url 'codes_list' %}">{{ tag.name }}</a><br/>
+<a target="_top" href="{% url 'codes_list' tag.pk %}">{{ tag.name }}</a><br/>
 {% endfor %}
 {% endblock %}
