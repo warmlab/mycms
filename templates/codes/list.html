@@ -4,10 +4,10 @@
 {% endblock %}
 
 {% block content %}
+	{% load url from future %}
 	{% for code in code_list %}
 	<div class="content">
-	{% load url from future %}
-	<h1><a href="{% url 'codes.views.code' pk=code.pk %}" class="title">{{ code.title }}</a></h1>
+	<h1><a href="{% url 'code_content' code.slug %}" class="title">{{ code.title }}</a></h1>
 	<h6><span style="color:#909090">{{ code.created }}</span></h6>
 	<hr/>
 	<p class="intro"><img style="float:left;margin-right:6px" alt="Note" src="/images/wl_note.png" /> 

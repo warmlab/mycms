@@ -11,7 +11,7 @@ urlpatterns = patterns('',
     # url(r'^mycms/', include('mycms.foo.urls')),
 	url(r'^$', 'home.views.home', name='home'),
 
-	url(r'^codes/$', include('codes.urls')),
+	url(r'^codes/', include('codes.urls')),
 #url(r'^codes/$', 'codes.views.list', name='codes_list'),
 #url(r'^codes/tag/(\d+)/$', 'codes.views.list', name='codes_taglist'),
 #url(r'^codes/(\d+)/$', 'codes.views.code'),
