@@ -2,20 +2,22 @@
 {% block style %}
 <link href="/static/codes/css/code.css" rel="stylesheet" type="text/css"/>
 {% endblock %}
-{% block script %}
 {% load url from future %}
+{% block script %}
 <script type="text/javascript" language="javascript">
-function add_comment {
-	$.post("{% url 'code_comment' code.id %}", {
+function add_comment() {
+	$.post("{% url 'code_comment' code.slug %}", {
 			name: "abcname",
 			title: "abc",
 			email: "xli@websense.com",
 			body: "abcabc",
+			'csrfmiddlewaretoken': '{{ csrf_token }}'
 		}, 
 		function(data) {
 			alert(data);
 		}
 	);
+	{% comment %}
 	comment_holder = $("#comment-holder");
 	most_recent = comment.finde("div:first");
 	$.getJSON("{% url 'code_comment' code.id %}",
@@ -33,6 +35,7 @@ function add_comment {
 			});
 		}
 	);
+	{% endcomment %}
 }
 </script>
 {% endblock %}
@@ -62,14 +65,14 @@ function add_comment {
 <div style="font-size:160%;color:#98bf21;">Add a comment:</div>
 <!-- Comment form  -->
 <div style="border-style:dashed;border-width:1px;border-radius:5px;border-color:#98bf21;">
-{#<form action="{% url 'code_comment' code.id %}" method="POST">{% csrf_token %}#}
+{#<form action="{% url 'code_comment' code.id %}" method="POST">#}
 	<table>
 		<tr><td>Name:</td><td>{{ form.author }}</td></tr>
 		<tr><td>Email:</td><td>{{ form.email }}</td></tr>
 		<tr><td>Title:</td><td>{{ form.title }}</td></tr>
 	    <tr><td colspan="2">{{ form.body|linebreaks }}</td></tr>
 		{#<tr><td colspan="2" style="text-align:right;"><input class="button" type="submit" value="Submit"/></td></tr>#}
-		<tr><td colspan="2" style="text-align:right;"><input class="button" type="button" value="Submit" onclick="add_comment"/></td></tr>
+		<tr><td colspan="2" style="text-align:right;"><input class="button" type="button" value="Submit" onclick="add_comment()"/></td></tr>
     </table>
 {#</form>#}
 </div>

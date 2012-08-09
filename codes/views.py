@@ -4,7 +4,7 @@ from django.db.models import Q
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.core.urlresolvers import reverse
 from django.core.context_processors import csrf
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 
 from codes.models import *
 
@@ -53,7 +53,6 @@ def list(request):
 	return render_to_response("codes/list.html", dict(categories=categories, codes=codes, user=request.user, code_list=codes.object_list))
 
 def code(request, slug):
-	logger.error(slug)
 	categories = Category.objects.all()
 	code = Code.objects.get(slug=slug)
 	comments = Comment.objects.filter(code=code)
@@ -69,10 +68,11 @@ def search(request):
 		heading = 'Search results'
 		return render_to_response("codes/list.html", locals())
 
-def comment(request, pk):
+def comment(request, slug):
 	"""Add a new comment by ajax."""
 	""" format: application/xml, application/javascript """
-	mimetype = "application/javascript";
+	mimetype = "application/javascript"
+	logger.error(request.POST)
 	if request.is_ajax(): 
 		p = request.POST
 		logger.error(p)
@@ -95,10 +95,10 @@ def comment(request, pk):
 			comment.email = email
 			comment.save()
 		"""
-		data = serilizers.serialize(mimetype, comment)
-		return HttpResonse(data, mimetype)
+		data = serilizers.serialize(mimetype, "aaaaaaa")
+		return HttpResponse(data, mimetype)
 	else:
-		return HttpResonse(status=400)
+		return HttpResponse(status=400)
 
 def add_comment(request, pk):
 	"""Add a new comment."""
