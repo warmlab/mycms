@@ -6,19 +6,30 @@
 {% block script %}
 <script type="text/javascript" language="javascript">
 function add_comment() {
+	comment_holder = $("#comment_holder");
 	$.post("{% url 'code_comment' code.slug %}", {
-			name: "abcname",
-			title: "abc",
-			email: "xli@websense.com",
-			body: "abcabc",
+			author: $("#id_author").val(),
+			title: $("#id_title").val(),
+			email: $("#id_email").val(),
+			body: $("#id_body").val(),
 			'csrfmiddlewaretoken': '{{ csrf_token }}'
 		}, 
-		function(data) {
-			alert(data);
+		function(data){
+			jQuery.each(data, function(index, comment) {
+			comment_holder.append('<div class="comment">'
+	        + '<div style="padding-left:2px;font-size:100%;color:#191970">'
+			+ comment.fields.author
+			+ '<span class="time"> - '
+			+ new Date(comment.fields.created)
+			+ '</span></div>'
+	        + '<div style="padding-left:2px;font-size:90%;color:#708090;"><p>'
+			+ comment.fields.body.replace(/(\r\n|\n\r|\r|\n)/g, '<br/>')
+			+ '</p></div></div><br/>');
+			});
 		}
 	);
 	{% comment %}
-	comment_holder = $("#comment-holder");
+	comment_holder = $("#comment_holder");
 	most_recent = comment.finde("div:first");
 	$.getJSON("{% url 'code_comment' code.id %}",
 		function(data) {
@@ -49,9 +60,10 @@ function add_comment() {
 	</div>
 	<br/>
 
-<div id="comment_holder">
 {% if comments %}
     <h2><span class="color_h1">Comments:</span></h2>
+{% endif %}
+<div id="comment_holder">
 {% for comment in comments %}
     <div class="comment">
 	        <div style="padding-left:2px;font-size:100%;color:#191970">{{ comment.author }}<span class="time"> - {{ comment.created }}</span></div>
@@ -59,7 +71,6 @@ function add_comment() {
     </div>
 	<br/>
 {% endfor %}
-{% endif %}
 </div>
 
 <div style="font-size:160%;color:#98bf21;">Add a comment:</div>

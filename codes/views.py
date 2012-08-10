@@ -1,6 +1,7 @@
 # Create your views here.
 from django.shortcuts import render_to_response, get_object_or_404
 from django.db.models import Q
+from django.core import serializers
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.core.urlresolvers import reverse
 from django.core.context_processors import csrf
@@ -71,12 +72,10 @@ def search(request):
 def comment(request, slug):
 	"""Add a new comment by ajax."""
 	""" format: application/xml, application/javascript """
-	mimetype = "application/javascript"
-	logger.error(request.POST)
+	mimetype = "application/json"
 	if request.is_ajax(): 
 		p = request.POST
 		logger.error(p)
-		"""
 		if p.has_key("body") and p["body"]:
 			title = "Unknown"
 			author = "Anonymous"
@@ -85,18 +84,29 @@ def comment(request, slug):
 			if p["author"]: author = p["author"]
 			if p['email']: email = p['email']
 
-			comment = Comment(code=Code.objects.get(pk=pk))
-			cf = CommentForm(p, instance=comment)
-			cf.fields["author"].required = False
+			#comment = Comment(code=Code.objects.get(slug=slug))
+			#cf = CommentForm(p, instance=comment)
+			#cf.fields["author"].required = False
 
-			comment = cf.save(commit=False)
+			#comment = cf.save(commit=False)
+			"""
+			comment = Comment()
 			comment.title = title
 			comment.author = author
 			comment.email = email
+			comment.body = p['body']
+			comment.code = Code.objects.get(slug=slug)
+			"""
+			comment = Comment(title = title,
+			author = author,
+			email = email,
+			body = p['body'],
+			code = Code.objects.get(slug=slug))
 			comment.save()
-		"""
-		data = serilizers.serialize(mimetype, "aaaaaaa")
-		return HttpResponse(data, mimetype)
+			data = serializers.serialize('json', [comment])
+			return HttpResponse(data, content_type=mimetype)
+		else:
+			return HttpResponse(status=400)
 	else:
 		return HttpResponse(status=400)
 
