@@ -13,15 +13,11 @@ import logging
 logger = logging.getLogger('mycms.debug')
 
 def category(request, slug):
-	category = get_object_or_404(Category, slug=slug)
-	code_list = Code.objects.filter(category=category)
-	heading = "Category: %s" % category.label
-	return render_to_response("codes/list.html", locals())
-
-def taglist(request, pk):
 	categories = Category.objects.all()
-	category = Category.objects.get(pk=int(pk))
-	codes = Code.objects.filter(category=category).order_by('-created')
+	category = get_object_or_404(Category, slug=slug)
+	codes = Code.objects.filter(category=category).order_by('-modified')
+	heading = "Category: %s" % category.label
+
 	paginator = Paginator(codes, 2)
 
 	try: page = int(request.GET.get("page", "1"))
@@ -31,17 +27,13 @@ def taglist(request, pk):
 	except (InvalidPage, EmptyPage):
 		codes = paginator.page(paginator.num_pages)
 
-	return render_to_response("codes/list.html", dict(categories=categories, codes=codes, user=request.user, code_list=codes.object_list))
+	code_list=codes.object_list
+	return render_to_response("codes/list.html", locals())
 
 def list(request):
-	pk = None
 	categories = Category.objects.all()
 
-	if pk is None:
-		codes = Code.objects.all().order_by('-created')
-	else:
-		category = Category.objects.get(pk=int(pk))
-		codes = Code.objects.filter(category=category).order_by('-created')
+	codes = Code.objects.all().order_by('-modified')
 	paginator = Paginator(codes, 2)
 
 	try: page = int(request.GET.get("page", "1"))

@@ -3,7 +3,8 @@
 <head lang="en">
 	<meta charset=utf-8 />
 	<title>{% block title %}WarmLab{% endblock %}</title>
-	<link href="/static/css/base.css" rel="stylesheet" type="text/css"/>
+	{% load static %}
+	<link href="{% static 'css/base.css' %}" rel="stylesheet" type="text/css"/>
 	{% block style %}{% endblock %}
 	<script language="javascript" type="text/javascript" src="/static/js/jquery.js"></script>
 	{% block script %}{% endblock %}
@@ -27,12 +28,12 @@
 	<div id="topnav" style="clear:both;width:960px;height:25px;">
 <div style="float:left;width:400px;word-spacing:12px;font-size:90%;padding-left:15px;padding-top:6px;white-space:nowrap;text-align:left;">
 		<a class="topnav" href="/" target="_top">HOME </a>
-		{% comment %}
 		<a class="topnav" href="/codes" target="_top">CODES </a>
+		{% comment %}
 		<a class="topnav" href="/art" target="_top">ART </a>
 		<a class="topnav" href="/health" target="_top">HEALTH </a>
-		{% endcomment %}
 		<a class="topnav" href="/more" target="_top">MORE...</a>
+		{% endcomment %}
 </div>
 <div style="float:right;width:280px;word-spacing:6px;font-size:80%;padding-right:13px;padding-top:7px;color:#888888;white-space:nowrap;text-align:right;">
 		<a class="topnav" href="/about" target="_top">ABOUT</a>

@@ -1,6 +1,9 @@
 {% extends "codes/base.html" %}
 {% block style %}
-<link href="/static/codes/css/code.css" rel="stylesheet" type="text/css"/>
+{% load static %}
+<link href="{% static 'codes/css/code.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'codes/css/emacs.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'codes/css/markdown.css' %}" rel="stylesheet" type="text/css"/>
 {% endblock %}
 {% load url from future %}
 {% block script %}
@@ -56,10 +59,9 @@ function add_comment() {
 	<h1><span class="color_h1">{{ code.title }}</span></h1>
 	<div><span class="time">{{ code.created }}</span></div>
 	<hr/>
-	<div>{{ code.html_body|safe }}</div>
+	{{ code.html_body|safe }}
 	</div>
 	<br/>
-
 {% if comments %}
     <h2><span class="color_h1">Comments:</span></h2>
 {% endif %}

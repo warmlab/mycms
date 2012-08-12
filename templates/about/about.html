@@ -1,4 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
-	<h1>{{ about.desc }} </h1>
+{% block leftcolumn %}
+{% endblock %}
+	{% load markup %}
+	{% for about in abouts %}
+	<div>{{ about.desc|markdown }} </div>
+	{% endfor %}
 {% endblock %}

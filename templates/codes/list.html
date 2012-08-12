@@ -1,17 +1,22 @@
 {% extends "codes/base.html" %}
 {% block style %}
-<link href="/static/codes/css/code.css" rel="stylesheet" type="text/css"/>
+{% load static %}
+<link href="{% static 'codes/css/code.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'codes/css/emacs.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'codes/css/markdown.css' %}" rel="stylesheet" type="text/css"/>
 {% endblock %}
 
 {% block content %}
 	{% load url from future %}
+	{% load markup %}
+	{% load code_filter %}
 	{% for code in code_list %}
 	<div class="content">
 	<h1><a href="{% url 'code_content' code.slug %}" class="title">{{ code.title }}</a></h1>
 	<h6><span style="color:#909090">{{ code.created }}</span></h6>
 	<hr/>
-	<p class="intro"><img style="float:left;margin-right:6px" alt="Note" src="/images/wl_note.png" /> 
-		{{ code.body|slice:":300"|linebreaks }}......
+	<p class="intro">
+		{{ code.body|slice_lines:16|markdown:"codehilite" }}<p>......</p>
 	</p>
 	{#<div><a href="{% url codes.views.code code.pk %}">Comments</a></div>#}
 	</div>

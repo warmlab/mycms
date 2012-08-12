@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block leftcolumn %}
-<h2 class="left"><span class="left_h2">Tags</span></h2>
+<h2 class="left"><span class="left_h2">Categories</span></h2>
 {#<a target="_top" href="default.asp" style='font-weight:bold;'>CSS Reference</a><br/>#}
 {% load url from future %}
-{% for tag in tags %}
-<a target="_top" href="{% url 'codes_list' tag.pk %}">{{ tag.name }}</a><br/>
+{% for category in categories %}
+<a target="_top" href="{% url 'codes_category' category.slug %}">{{ category.label }}</a><br/>
 {% endfor %}
 {% endblock %}

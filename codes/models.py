@@ -63,7 +63,7 @@ class Code(models.Model):
 
 	def save(self):
 		# The codehilite extension for the markdown library adds the pygments code highlighting support
-		self.html_body = markdown(self.body, ['codehilite'])
+		self.html_body = markdown(self.body, ['codehilite(force_linenos=True)'])
 		self.modified = datetime.datetime.now()
 		super(Code, self).save()
 

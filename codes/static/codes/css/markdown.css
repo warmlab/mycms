@@ -1,0 +1,59 @@
+table.codehilitetable {
+margin: 1px 1px;
+padding: 0px 0px 0px 1px;
+background-color: #F4F8FC;
+background: -webkit-gradient(linear, left top, left bottom, from(#FCFDFE), to(#F4F8FC));
+background: -moz-linear-gradient(#FCFDFE, #F4F8FC) repeat scroll 0 0 #FCFDFE;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FCFDFE', endColorstr='#F4F8FC');
+border: 1px solid #D9D9D9;
+box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+color: #666666;
+font-size: 120%;
+}
+
+table.codehilitetable td.linenos {
+border-right: 1px solid #D9D9D9;
+padding: 0px 2px;
+background-color: #EDF5FF;
+}
+
+table.codehilitetable thead {
+background-color: #FFF;
+}
+table.codehighlitetable td,
+table.codehilitetable th {
+border: 0;
+}
+/* Start inline code */
+.mono, pre, code, tt, p code, li code {
+	font-family: Monaco,"Andale Mono","lucida console","Courier New",monospace;
+	font-size:90%;
+}
+p code, li code {
+background: none repeat scroll 0 0 rgba(230, 230, 230, 0.27);
+border: medium none;
+border-radius: 0.3em 0.3em 0.3em 0.3em;
+box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 5px 0 rgba(0, 0, 0, 0.17) inset;
+color: #9D4B2D;
+}
+p code, li code {
+background: none repeat scroll 0 0 #FFFFFF;
+border: 1px solid #DDDDDD;
+border-radius: 0.4em 0.4em 0.4em 0.4em;
+color: #555555;
+display: inline-block;
+font-size: 0.8em;
+line-height: 1.5em;
+margin: -1px 0;
+padding: 0 0.3em;
+}
+/* End inline code */
+pre {
+padding: 0px 4px;
+max-width: 570px;
+overflow: auto; overflow-y:hidden
+}
+code {
+	font-family: Consolas, Monaco, Andale Mono, monospace;
+	line-height: 1.5;
+}
