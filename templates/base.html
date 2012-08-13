@@ -2,9 +2,10 @@
 <html>
 <head lang="en">
 	<meta charset=utf-8 />
-	<title>{% block title %}WarmLab{% endblock %}</title>
+	<title>WarmLab - {{ page.title }}</title>
 	{% load static %}
-	<link href="{% static 'css/base.css' %}" rel="stylesheet" type="text/css"/>
+	{#<link href="{% static 'css/base.css' %}" rel="stylesheet" type="text/css"/>#}
+    <link href="{% static 'css/master.css' %}" rel="stylesheet" type="text/css" charset="utf-8"/>
 	{% block style %}{% endblock %}
 	<script language="javascript" type="text/javascript" src="/static/js/jquery.js"></script>
 	{% block script %}{% endblock %}
@@ -18,68 +19,31 @@
 	<![endif]-->
 <head>
 <body>
-	<div style="position:relative;width:100%;margin-top:0px;margin-bottom:0px;">
-	<div style="width:960px;margin-top:5px;margin-left:auto;margin-right:auto">
-	<div style="width:960px;height:74px;margin:0;padding:0;">
-	<div style="width:340px;text-align:left;float:left;">
-		<a href="http://www.warmlab.com"><img width="336" height="69" src="/images/warmlacodeo.gif" alt="warmlab.com" style="border:0;margin-top:5px;" /></a>
-	</div>
-	</div>
-	<div id="topnav" style="clear:both;width:960px;height:25px;">
-<div style="float:left;width:400px;word-spacing:12px;font-size:90%;padding-left:15px;padding-top:6px;white-space:nowrap;text-align:left;">
-		<a class="topnav" href="/" target="_top">HOME </a>
-		<a class="topnav" href="/codes" target="_top">CODES </a>
-		{% comment %}
-		<a class="topnav" href="/art" target="_top">ART </a>
-		<a class="topnav" href="/health" target="_top">HEALTH </a>
-		<a class="topnav" href="/more" target="_top">MORE...</a>
-		{% endcomment %}
-</div>
-<div style="float:right;width:280px;word-spacing:6px;font-size:80%;padding-right:13px;padding-top:7px;color:#888888;white-space:nowrap;text-align:right;">
-		<a class="topnav" href="/about" target="_top">ABOUT</a>
-</div>
-	</div>
-	{% comment %}
-	<div style="width:960px;height:94px;position:relative;margin-left:auto;margin-right:auto;margin:0px;padding:0px;overflow:hidden">
-		<span>ads</span>
-	</div>
-	{% endcomment %}
-	<div style="width:960px;padding:0px;margin:0px;">
-	<div id="leftcolumn" style="width:170px;margin:0;padding:0;margin-top:5px;float:left;">
-	{% block leftcolumn %}
-	<h2 class="left"><span class="left_h2">CSS</span> Reference</h2>
-	<a target="_top" href="default.asp" style='font-weight:bold;'>CSS Reference</a><br/>
-	<a target="_top" href="css_selectors.asp">CSS Selectors</a><br/>
-	{% endblock %}
-	</div>
-
-	<div style="width:634px;margin:0px;padding:0px;background-color:#ffffff;color:#000000;padding-bottom:8px;padding-right:5px;padding-top:4px;float:left;">
-		{% block content %}{% endblock %}
-	</div>
-
-	<div style="width:470px;margin:auto;margin-top:5px;">
-	</div>
-	{% comment %}
-	<div id="rightcolumn" style="width:150px;margin:0px;padding:0px;float:left">
-	</div>
-	{% endcomment %}
-	</div>
-	<br/>
-	</div>
-
-	<div style="width:100%;clear:both;margin:0;padding:0;background-color:transparent;position:relative;background-image: linear-gradient(top, #fff, #efefef);">
-	<div id="footer" style="width:960px;margin-left:auto;margin-right:auto;padding-top:15px;">
-	<div style="float:left;width:200px;text-align:left;padding-left:3px;padding-top:11px;"><a href="http://www.warmlab.com"><img style="border:0" src="/images/warmlab_gray.png" alt="WarmLab.com" /></a>
-	</div>
-	<div style="word-spacing:6px;font-size:90%;padding-right:0px;padding-top:0px;float:right;width:100%;text-align:right;">
-	<a href="/" target="_top">HOME</a> |
-	<a href="#top" target="_top">TOP</a> |
-	<a href="/about" target="_top" style="padding-right:13px">ABOUT</a>
-	</div>
-	<div style="padding-top:13px;color:#404040;clear:both;">
-	</div>
-	</div>
-	</div>
-	</div>
+    <div id='wrapper'>
+      <div id='header'>
+        <h1><a href='/'>WarmLab</a></h1>
+        <div id='menu'>
+          <ul>
+            <li><a href='/' id='blog_link' title='Blog'>Blog</a></li>
+            <li><a href='/about' id='about_link' title='About'>About</a></li>
+			{% comment %}
+            <li><a href='/' id='home_link' title='Home'>Home</a></li>
+            <li><a href='http://github.com/warmlab' target='_blank' title='GitHub' rel='me' id='github_link'>GitHub</a></li>
+			{% endcomment %}
+          </ul>
+        </div>
+      </div>
+      <div id='content'>
+        {% block content %}
+		{% endblock %}
+		{% block aside %}
+		{% endblock %}
+        <div class='clearfix'></div>
+      </div>
+    </div>
+    <div id='footer'>
+      Copyright &copy; 2012 WarmLab. Some rights reserved.Templates from <a href='http://github.com/mbleigh/mbleigh.github.com/' target='_blank'>Michael Bleigh</a>.
+    </div>
+  </body>
 </body>
 </html>

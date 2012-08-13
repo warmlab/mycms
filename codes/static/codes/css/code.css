@@ -39,3 +39,43 @@ a.chapter:link    {text-decoration:none;color:#98bf21;background-color:transpare
 a.chapter:visited {text-decoration:none;color:#98bf21;background-color:transparent}
 a.chapter:hover   {text-decoration:underline;color:#98bf21;background-color:transparent}
 a.chapter:active  {text-decoration:none;color:#98bf21;background-color:transparent}
+
+.dsq-textarea{margin:0 0 1em 0}
+.dsq-textarea-reply{margin-left:46px;margin-bottom:1.8em}
+.dsq-textarea-background{
+	background:#fff url("../../../images/themes/houdini/backgrounds-sprite.png") 0 -480px repeat-x;
+	width:auto;
+	border:1px solid #c1c1c1;
+	-webkit-border-radius:4px;
+	-moz-border-radius:4px;
+	border-radius:4px;
+	-webkit-box-shadow:inset 0 1px 4px rgba(0,0,0,.16);
+	-moz-box-shadow:inset 0 1px 4px rgba(0,0,0,.16);
+	box-shadow:inset 0 1px 4px rgba(0,0,0,.16);
+	position:relative}.dsq-textarea-wrapper{min-height:60px;
+	padding:10px}.dsq-textarea-wrapper iframe{height:60px;
+	display:block;
+	position:inherit;
+	top:0
+}
+.dsq-textarea-loading-text{display:none}
+.dsq-textarea-loading .dsq-textarea-loading-text{
+	display:block;
+	color:#666;
+	font-size:13px
+}
+#dsq-textarea textarea{
+	background:transparent;
+	margin:0;
+	padding:0;
+	border:0;
+	width:100%;
+	max-width:100%;
+	min-height:40px;
+	outline:0;
+	font-size:13px;
+	color:#999
+}
+table {
+border-collapse: collapse;
+}

@@ -1,12 +1,17 @@
 import datetime
 from django.db import models
-from django.db.models import permalink
+from django.db.models import permalink, signals
 from django.forms import ModelForm
 
 from django.contrib import admin
 from django.contrib.auth.models import User
 
+from django.dispatch import receiver
+
 from markdown import markdown
+
+import logging
+logger = logging.getLogger('mycms.debug')
 
 VIEWABLE_STATUS = [3, 4]
 class ViewableManager(models.Manager):
@@ -18,7 +23,8 @@ class ViewableManager(models.Manager):
 class Category(models.Model):
 	label = models.CharField(max_length=63);
 	slug = models.SlugField()
-	desc = models.TextField(null=True)
+	num = models.IntegerField(default=0, editable=False)
+	desc = models.TextField(null=True, blank=True)
 
 	class Meta:
 		verbose_name_plural = "categories"
@@ -32,7 +38,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 class Lang(models.Model):
 	name = models.CharField(max_length=7);
-	desc = models.TextField(null=True)
+	desc = models.TextField(null=True, blank=True)
 
 	def __unicode__(self):
 		return self.name
@@ -63,7 +69,7 @@ class Code(models.Model):
 
 	def save(self):
 		# The codehilite extension for the markdown library adds the pygments code highlighting support
-		self.html_body = markdown(self.body, ['codehilite(force_linenos=True)'])
+		self.html_body = markdown(self.body, ['codehilite'])
 		self.modified = datetime.datetime.now()
 		super(Code, self).save()
 
@@ -102,6 +108,13 @@ class CommentForm(ModelForm):
 	class Meta:
 		model = Comment
 		exclude = ["code"]
+
+@receiver(signals.post_save, sender=Code)
+def update_category_num(sender, **kwargs):
+	if kwargs['created']:
+		category = kwargs['instance'].category
+		category.num += 1
+		category.save()
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Lang, LangAdmin)

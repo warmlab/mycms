@@ -31,35 +31,19 @@ function add_comment() {
 			});
 		}
 	);
-	{% comment %}
-	comment_holder = $("#comment_holder");
-	most_recent = comment.finde("div:first");
-	$.getJSON("{% url 'code_comment' code.id %}",
-		function(data) {
-			jQuery.each(data, function() {
-				comment_holder.prepend('<div class="comment">'
-	        + '<div style="padding-left:2px;font-size:100%;color:#191970">'
-			+ {{ comment.author }}
-			+ '<span class="time"> - '
-			+ {{ comment.created }}
-			+ '</span></div>'
-	        + '<div style="padding-left:2px;font-size:90%;color:#708090;">'
-			+ {{ comment.body|linebreaks }}'
-			+ '</div></div><br/>');
-			});
-		}
-	);
-	{% endcomment %}
 }
 </script>
 {% endblock %}
 
 {% block content %}
-	<div class="content">
-	<h1><span class="color_h1">{{ code.title }}</span></h1>
-	<div><span class="time">{{ code.created }}</span></div>
-	<hr/>
-	{{ code.html_body|safe }}
+<div id="home_left" class="home_box">
+	{% load url from future %}
+	<div class='post'>
+	  <span class='date'>{{code.modified}}</span>
+	  <h1><a href='{% url 'code_content' code.slug %}'>{{code.title}}</a></h1>
+	  <div class='body'>{{ code.html_body|safe }}</div>
+	</div>
+	<div id="comment_holder">
 	</div>
 	<br/>
 {% if comments %}
@@ -75,18 +59,16 @@ function add_comment() {
 {% endfor %}
 </div>
 
-<div style="font-size:160%;color:#98bf21;">Add a comment:</div>
+<h2><span class="color_h1">Add a comment:</span></h2>
 <!-- Comment form  -->
 <div style="border-style:dashed;border-width:1px;border-radius:5px;border-color:#98bf21;">
-{#<form action="{% url 'code_comment' code.id %}" method="POST">#}
 	<table>
 		<tr><td>Name:</td><td>{{ form.author }}</td></tr>
 		<tr><td>Email:</td><td>{{ form.email }}</td></tr>
 		<tr><td>Title:</td><td>{{ form.title }}</td></tr>
 	    <tr><td colspan="2">{{ form.body|linebreaks }}</td></tr>
-		{#<tr><td colspan="2" style="text-align:right;"><input class="button" type="submit" value="Submit"/></td></tr>#}
 		<tr><td colspan="2" style="text-align:right;"><input class="button" type="button" value="Submit" onclick="add_comment()"/></td></tr>
     </table>
-{#</form>#}
+</div>
 </div>
 {% endblock %}

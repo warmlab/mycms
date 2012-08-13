@@ -1,7 +1,7 @@
 {% extends "codes/base.html" %}
 {% block style %}
 {% load static %}
-<link href="{% static 'codes/css/code.css' %}" rel="stylesheet" type="text/css"/>
+{#<link href="{% static 'codes/css/code.css' %}" rel="stylesheet" type="text/css"/> #}
 <link href="{% static 'codes/css/emacs.css' %}" rel="stylesheet" type="text/css"/>
 <link href="{% static 'codes/css/markdown.css' %}" rel="stylesheet" type="text/css"/>
 {% endblock %}
@@ -10,18 +10,19 @@
 	{% load url from future %}
 	{% load markup %}
 	{% load code_filter %}
+<div id="home_left" class="home_box">
+  <h2><a href='http://feeds2.feedburner.com/mbleigh' class='float-right'><img src="{% static 'images/subscribe-icon.gif' %}" alt="Subscribe"/></a>Latest Blog Post</h2>
 	{% for code in code_list %}
-	<div class="content">
-	<h1><a href="{% url 'code_content' code.slug %}" class="title">{{ code.title }}</a></h1>
-	<h6><span style="color:#909090">{{ code.created }}</span></h6>
-	<hr/>
-	<p class="intro">
-		{{ code.body|slice_lines:16|markdown:"codehilite" }}<p>......</p>
-	</p>
-	{#<div><a href="{% url codes.views.code code.pk %}">Comments</a></div>#}
+	<div class='post'>
+	  {% if not forloop.first %}
+	  <span class='date'>{{code.modified}}</span>
+	  {% endif %}
+	  <h1><a href='{% url 'code_content' code.slug %}'>{{code.title}}</a></h1>
+	  <div class='body'>{{ code.body|slice_lines:16|markdown:"codehilite" }}</div>
+	  <a href="{% url 'codes.views.code' code.slug %}#comment_holder">Comments</a>
 	</div>
-	<br/>
 	{% endfor %}
+
 	{% if code_list and codes.paginator.num_pages > 1 %}
 	<hr/>
 	<div class="chapter">
@@ -35,4 +36,5 @@
 	</div>
 	<hr/>
 	{% endif %}
+</div>
 {% endblock %}

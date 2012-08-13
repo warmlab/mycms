@@ -9,7 +9,8 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'mycms.views.home', name='home'),
     # url(r'^mycms/', include('mycms.foo.urls')),
-	url(r'^$', 'home.views.home', name='home'),
+	#url(r'^$', 'home.views.home', name='home'),
+	url(r'^$','codes.views.list', name='codes_list'),
 
 	url(r'^codes/', include('codes.urls')),
 #url(r'^codes/$', 'codes.views.list', name='codes_list'),
