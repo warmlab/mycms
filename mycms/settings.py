@@ -126,7 +126,6 @@ INSTALLED_APPS = (
 	'django.contrib.markup',
 	'gunicorn',
 	'codes',
-	'home',
 	'about',
 )
 

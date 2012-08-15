@@ -1,7 +1,7 @@
 {% extends "codes/base.html" %}
 {% block style %}
 {% load static %}
-{#<link href="{% static 'codes/css/code.css' %}" rel="stylesheet" type="text/css"/> #}
+<link href="{% static 'codes/css/code.css' %}" rel="stylesheet" type="text/css"/>
 <link href="{% static 'codes/css/emacs.css' %}" rel="stylesheet" type="text/css"/>
 <link href="{% static 'codes/css/markdown.css' %}" rel="stylesheet" type="text/css"/>
 {% endblock %}
@@ -11,12 +11,12 @@
 	{% load markup %}
 	{% load code_filter %}
 <div id="home_left" class="home_box">
-  <h2><a href='http://feeds2.feedburner.com/mbleigh' class='float-right'><img src="{% static 'images/subscribe-icon.gif' %}" alt="Subscribe"/></a>Latest Blog Post</h2>
+  {# <h2><a href='http://feeds2.feedburner.com/mbleigh' class='float-right'><img src="{% static 'images/subscribe-icon.gif' %}" alt="Subscribe"/></a>Latest Blog Post</h2> #}
 	{% for code in code_list %}
 	<div class='post'>
-	  {% if not forloop.first %}
+	  {# if not forloop.first #}
 	  <span class='date'>{{code.modified}}</span>
-	  {% endif %}
+	  {# endif #}
 	  <h1><a href='{% url 'code_content' code.slug %}'>{{code.title}}</a></h1>
 	  <div class='body'>{{ code.body|slice_lines:16|markdown:"codehilite" }}</div>
 	  <a href="{% url 'codes.views.code' code.slug %}#comment_holder">Comments</a>
@@ -24,17 +24,15 @@
 	{% endfor %}
 
 	{% if code_list and codes.paginator.num_pages > 1 %}
-	<hr/>
 	<div class="chapter">
 		{% if codes.has_previous %}
-		<a class="chapter" href="?page={{ codes.previous_page_number }}">&laquo; Newer</a>
+		<a href="?page={{ codes.previous_page_number }}">&laquo; Newer</a>
 		{% endif %}
 		&nbsp;Page {{ codes.number }} of {{ codes.paginator.num_pages }}&nbsp;
 		{% if codes.has_next %}
-		<a class="chapter" href="?page={{ codes.next_page_number }}">Older &raquo;</a>
+		<a href="?page={{ codes.next_page_number }}">Older &raquo;</a>
 		{% endif %}
 	</div>
-	<hr/>
 	{% endif %}
 </div>
 {% endblock %}

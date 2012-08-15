@@ -30,15 +30,17 @@ a.title:hover   {text-decoration:underline;color:#98bf21;background-color:transp
 a.title:active  {text-decoration:none;color:#98bf21;background-color:transparent;text-shadow: 5px 5px 5px #D8D8D8;}
 div.chapter 
 {
-font-size:90%;margin:0px;padding:0px;width:100%;height:20px;text-align:right;color:#98bf21;
+  color: #583;
+  font-weight: bold;
+font-size:90%;margin:0px;padding:0px;width:100%;height:20px;text-align:right;
 }
-div.page {width:40%;float:right;text-align:right;color:#98bf21;}
+div.page {width:40%;float:right;text-align:right;color:#6e9b20;}
 div.chapter div.prev {width:40%;float:left;text-align:left;}
 div.chapter div.next {width:40%;float:right;text-align:right;}
-a.chapter:link    {text-decoration:none;color:#98bf21;background-color:transparent}
-a.chapter:visited {text-decoration:none;color:#98bf21;background-color:transparent}
-a.chapter:hover   {text-decoration:underline;color:#98bf21;background-color:transparent}
-a.chapter:active  {text-decoration:none;color:#98bf21;background-color:transparent}
+a.chapter:link    {text-decoration:none;color:#6e9b20;background-color:transparent}
+a.chapter:visited {text-decoration:none;color:#6e9b20;background-color:transparent}
+a.chapter:hover   {text-decoration:underline;color:#6e9b20;background-color:transparent}
+a.chapter:active  {text-decoration:none;color:#6e9b20;background-color:transparent}
 
 .dsq-textarea{margin:0 0 1em 0}
 .dsq-textarea-reply{margin-left:46px;margin-bottom:1.8em}
