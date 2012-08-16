@@ -49,11 +49,12 @@ def code(request, slug):
 	categories = Category.objects.all()
 	code = Code.objects.get(slug=slug)
 	comments = Comment.objects.filter(code=code)
-	d = dict(categories=categories, code=code, comments=comments, form=CommentForm(), user=request.user)
+	d = dict(categories=categories, code=code, comments=comments, user=request.user)
 	d.update(csrf(request))
 	return render_to_response("codes/code.html", d)
 
 def search(request):
+	categories = Category.objects.all()
 	if 'q' in request.GET:
 		term = request.GET['q']
 		code_list = Code.objects.filter(Q(title__contains=term)
@@ -77,7 +78,6 @@ def comment(request, slug):
 			if p['email']: email = p['email']
 
 			#comment = Comment(code=Code.objects.get(slug=slug))
-			#cf = CommentForm(p, instance=comment)
 			#cf.fields["author"].required = False
 
 			#comment = cf.save(commit=False)
@@ -101,26 +101,3 @@ def comment(request, slug):
 			return HttpResponse(status=400)
 	else:
 		return HttpResponse(status=400)
-
-def add_comment(request, pk):
-	"""Add a new comment."""
-	p = request.POST
-
-	if p.has_key("body") and p["body"]:
-		title = "Unknown"
-		author = "Anonymous"
-		email = "anonymous@warmlab.com"
-		if p['title']: title = p['title']
-		if p["author"]: author = p["author"]
-		if p['email']: email = p['email']
-
-		comment = Comment(code=Code.objects.get(pk=pk))
-		cf = CommentForm(p, instance=comment)
-		cf.fields["author"].required = False
-
-		comment = cf.save(commit=False)
-		comment.title = title
-		comment.author = author
-		comment.email = email
-		comment.save()
-	return HttpResponseRedirect(reverse("codes.views.code", args=[pk]))

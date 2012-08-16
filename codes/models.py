@@ -1,7 +1,6 @@
 import datetime
 from django.db import models
 from django.db.models import permalink, signals
-from django.forms import ModelForm
 
 from django.contrib import admin
 from django.contrib.auth.models import User
@@ -103,11 +102,6 @@ class Comment(models.Model):
 
 class CommentAdmin(admin.ModelAdmin):
 	display_fields = ["title", "code", "author", "created"]
-
-class CommentForm(ModelForm):
-	class Meta:
-		model = Comment
-		exclude = ["code"]
 
 @receiver(signals.post_save, sender=Code)
 def update_category_num(sender, **kwargs):

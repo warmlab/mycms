@@ -292,3 +292,12 @@ code {
 .float-right { float: right; }
 
 a img { border: 0; }
+
+input {
+	border: 1px solid #D4D0C8;
+}
+
+textarea {
+	border: 1px solid #D4D0C8;
+	width: 580px;
+}

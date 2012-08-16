@@ -7,14 +7,14 @@
 {% endblock %}
 {% load url from future %}
 {% block script %}
-<script type="text/javascript" language="javascript">
+{{ block.super }}
 function add_comment() {
 	comment_holder = $("#comment_holder");
 	$.post("{% url 'code_comment' code.slug %}", {
-			author: $("#id_author").val(),
-			title: $("#id_title").val(),
-			email: $("#id_email").val(),
-			body: $("#id_body").val(),
+			author: $("#comment_author").val(),
+			title: $("#comment_title").val(),
+			email: $("#comment_email").val(),
+			body: $("#comment_body").val(),
 			'csrfmiddlewaretoken': '{{ csrf_token }}'
 		}, 
 		function(data){
@@ -32,7 +32,6 @@ function add_comment() {
 		}
 	);
 }
-</script>
 {% endblock %}
 
 {% block content %}
@@ -43,9 +42,6 @@ function add_comment() {
 	  <h1><a href='{% url 'code_content' code.slug %}'>{{code.title}}</a></h1>
 	  <div class='body'>{{ code.html_body|safe }}</div>
 	</div>
-	<div id="comment_holder">
-	</div>
-	<br/>
 {% if comments %}
     <h2><span class="color_h1">Comments:</span></h2>
 {% endif %}
@@ -63,10 +59,10 @@ function add_comment() {
 <!-- Comment form  -->
 <div style="border-style:dashed;border-width:1px;border-radius:5px;border-color:#98bf21;">
 	<table>
-		<tr><td>Name:</td><td>{{ form.author }}</td></tr>
-		<tr><td>Email:</td><td>{{ form.email }}</td></tr>
-		<tr><td>Title:</td><td>{{ form.title }}</td></tr>
-	    <tr><td colspan="2">{{ form.body|linebreaks }}</td></tr>
+		<tr><td>Name:</td><td><input id="comment_author" type="text" name="comment_author" maxlength="63"/></td></tr>
+		<tr><td>Email:</td><td><input id="comment_email" type="text" name="comment_email" maxlength="75"/></td></tr>
+		<tr><td>Title:</td><td><input id="comment_title" type="text" name="comment_title" maxlength="63"/></td></tr>
+	    <tr><td valign="top">Comment:</td><td valign="top"><textarea id="comment_body" rows="7" cols="80" name=comment_"body"></textarea></td></tr>
 		<tr><td colspan="2" style="text-align:right;"><input class="button" type="button" value="Submit" onclick="add_comment()"/></td></tr>
     </table>
 </div>

@@ -1,15 +1,24 @@
 {% extends "base.html" %}
 {% block aside %}
 <div class='home_box' id='home_right'>
-  <h2>Cagegories</h2>
-  <div id='github-projects'>
+  <h2>Search</h2>
     <div class="repo">
       {% load url from future %}
+      <h3><input id="search_text" type="text" placeholder="Input a text" size="15"/>
+	  <a target="_top" href="javascript:f_search()">Search</a></h3>
+    </div>
+  <h2>Cagegories</h2>
+    <div class="repo">
       {% for category in categories %}
       <h3><a target="_top" href="{% url 'codes_category' category.slug %}">{{ category.label }}({{category.num }})</a></h3>
 	  {#<span class="desc">A tagging plugin for Rails applications that allows for custom tagging along dynamic contexts.</span>#}
       {% endfor %}
     </div>
-  </div>
 </div>
+{% endblock %}
+{% block script %}
+function f_search() {
+	var val = document.getElementById('search_text').value;
+	open("{% url 'codes_search' %}?q=" + val, '_self');
+}
 {% endblock %}
