@@ -22,6 +22,13 @@
 	  <a href="{% url 'codes.views.code' code.slug %}#comment_holder">Comments</a>
 	</div>
 	{% endfor %}
+	{% if not code_list %}
+	<div class='post'>
+	  <h2>No Blog</h2>
+	  <h1>No Thing</h1>
+	  <div class='body'>There is no content just now!</div>
+	</div>
+	{% endif %}
 
 	{% if code_list and codes.paginator.num_pages > 1 %}
 	<div class="chapter">

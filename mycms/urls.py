@@ -10,6 +10,8 @@ urlpatterns = patterns('',
     # url(r'^$', 'mycms.views.home', name='home'),
     # url(r'^mycms/', include('mycms.foo.urls')),
 	#url(r'^$', 'home.views.home', name='home'),
+	url(r'^favicon\.ico$', 'django.views.generic.simple.redirect_to', {'url': '/static/images/favicon.ico'}),
+	url(r'^robots\.txt$', 'django.views.generic.simple.direct_to_template', {'template': 'robots.txt', 'mimetype': 'text/plain'}),
 	url(r'^$','codes.views.list', name='codes_list'),
 
 	url(r'^codes/', include('codes.urls')),
