@@ -5,9 +5,9 @@
     <div class="repo">
       {% load url from future %}
       <h3><input id="search_text" type="text" placeholder="Input a text" size="15"/>
-	  <a target="_top" href="javascript:f_search()">Search</a></h3>
+	  <a target="_top" href="javascript:f_search()">Go</a></h3>
     </div>
-  <h2>Cagegories</h2>
+  <h2>Categories</h2>
     <div class="repo">
       {% for category in categories %}
       <h3><a target="_top" href="{% url 'codes_category' category.slug %}">{{ category.label }}({{category.num }})</a></h3>
