@@ -48,8 +48,7 @@ def list(request):
 def code(request, slug):
 	categories = Category.objects.all()
 	code = Code.objects.get(slug=slug)
-	comments = Comment.objects.filter(code=code)
-	d = dict(categories=categories, code=code, comments=comments, user=request.user)
+	d = dict(categories=categories, code=code, user=request.user)
 	d.update(csrf(request))
 	return render_to_response("codes/code.html", d)
 
@@ -61,43 +60,3 @@ def search(request):
 					| Q(body__contains=term))
 		heading = 'Search results'
 		return render_to_response("codes/list.html", locals())
-
-def comment(request, slug):
-	"""Add a new comment by ajax."""
-	""" format: application/xml, application/javascript """
-	mimetype = "application/json"
-	if request.is_ajax(): 
-		p = request.POST
-		logger.error(p)
-		if p.has_key("body") and p["body"]:
-			title = "Unknown"
-			author = "Anonymous"
-			email = "anonymous@warmlab.com"
-			if p['title']: title = p['title']
-			if p["author"]: author = p["author"]
-			if p['email']: email = p['email']
-
-			#comment = Comment(code=Code.objects.get(slug=slug))
-			#cf.fields["author"].required = False
-
-			#comment = cf.save(commit=False)
-			"""
-			comment = Comment()
-			comment.title = title
-			comment.author = author
-			comment.email = email
-			comment.body = p['body']
-			comment.code = Code.objects.get(slug=slug)
-			"""
-			comment = Comment(title = title,
-			author = author,
-			email = email,
-			body = p['body'],
-			code = Code.objects.get(slug=slug))
-			comment.save()
-			data = serializers.serialize('json', [comment])
-			return HttpResponse(data, content_type=mimetype)
-		else:
-			return HttpResponse(status=400)
-	else:
-		return HttpResponse(status=400)

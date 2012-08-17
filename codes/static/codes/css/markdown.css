@@ -9,25 +9,38 @@ color: #666666;
 font-size: 100%;
 border-padding:0;
 border-spacing:0;
+width:680;
+}
+
+table.codehilitetable tr {
+padding: 0px;
+background-color: #EDF5FF;
+text-align: top;
 }
 
 table.codehilitetable td {
 border-right: 1px solid #D9D9D9;
 padding: 0px;
 background-color: #EDF5FF;
+text-align: top;
 }
 
 /* Start inline code */
-pre, code, tt, p code, li code {
-	font-family: Monaco,"Andale Mono","lucida console","Courier New",monospace;
-	font-size:80%;
-}
 /* End inline code */
 div.linenodiv pre {
-padding: 0px;
+	font-family: Monaco,"Andale Mono","lucida console","Courier New",monospace;
+	font-size:90%;
+	padding-left: 5px;
+	text-align: right;
 }
+
+div.codehilite pre {
+	font-family: Monaco,"Andale Mono","lucida console","Courier New",monospace;
+	font-size:90%;
+}
+
 div.codehilite pre {
 padding: 0px;
-max-width: 620px;
+max-width: 650px;
 overflow: auto; overflow-y:hidden
 }

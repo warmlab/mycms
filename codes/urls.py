@@ -12,6 +12,6 @@ urlpatterns = patterns('codes.views',
 	url(r'^$', 'list', name="code_list"),
 	url(r'^category/(?P<slug>[-\w]+)/$', 'category', name='codes_category'),
 	url(r'^search/$', 'search', name='codes_search'),
-	url(r'^comment/(?P<slug>[-\w]+)/$', 'comment', name="code_comment"),
+	#url(r'^comment/(?P<slug>[-\w]+)/$', 'comment', name="code_comment"),
 	url(r'^(?P<slug>[-\w]+)/$', 'code', name="code_content"),
 )

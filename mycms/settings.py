@@ -131,7 +131,7 @@ INSTALLED_APPS = (
 	'disqus',
 )
 
-DISQUS_API_KEY = None
+DISQUS_API_KEY = ''
 DISQUS_WEBSITE_SHORTNAME = 'warmlab'
 
 # A sample logging configuration. The only tangible logging

@@ -89,20 +89,6 @@ class Code(models.Model):
 class CodeAdmin(admin.ModelAdmin):
 	search_field = ['title']
 
-class Comment(models.Model):
-	title = models.CharField(max_length=63);
-	author = models.CharField(max_length=63)
-	email = models.EmailField()
-	body = models.TextField()
-	created = models.DateTimeField(auto_now_add=True)
-	code = models.ForeignKey(Code)
-
-	def __unicode__(self):
-		return unicode("%s: %s" % (self.code, self.body[:63]))
-
-class CommentAdmin(admin.ModelAdmin):
-	display_fields = ["title", "code", "author", "created"]
-
 @receiver(signals.post_save, sender=Code)
 def update_category_num(sender, **kwargs):
 	if kwargs['created']:
@@ -110,7 +96,12 @@ def update_category_num(sender, **kwargs):
 		category.num += 1
 		category.save()
 
+@receiver(signals.post_delete, sender=Code)
+def update_category_num(sender, **kwargs):
+	category = kwargs['instance'].category
+	category.num -= 1
+	category.save()
+
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Lang, LangAdmin)
 admin.site.register(Code, CodeAdmin)
-admin.site.register(Comment, CommentAdmin)

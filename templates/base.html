@@ -9,9 +9,9 @@
     <link href="{% static 'css/master.css' %}" rel="stylesheet" type="text/css" charset="utf-8"/>
 	{% block style %}{% endblock %}
 	<script language="javascript" type="text/javascript" src="/static/js/jquery.js"></script>
-<script type="text/javascript" language="javascript">
+	<script type="text/javascript" language="javascript">
 	{% block script %}{% endblock %}
-</script>
+	</script>
 	<!-- [if lt IE 9]>
 	<script>
 	var e=("footer,article,canvas,datalist,details,aside,abbr,figure,header,hgroup,mark,menu,meter,nav,output,progress,secsion,time,video,audio").split(',');
@@ -24,11 +24,11 @@
 <body>
     <div id='wrapper'>
       <div id='header'>
-        <h1><a href='/'>WarmLab</a></h1>
+        <h1><a href='/'></a></h1>
         <div id='menu'>
           <ul>
-            <li><a href='/' id='blog_link' title='Blog'>Blog</a></li>
-            <li><a href='/about' id='about_link' title='About'>About</a></li>
+            <li><a href='/' id='blog_link' title='Blog'></a></li>
+            <li><a href='/about' id='about_link' title='About'></a></li>
 			{% comment %}
             <li><a href='/' id='home_link' title='Home'>Home</a></li>
             <li><a href='http://github.com/warmlab' target='_blank' title='GitHub' rel='me' id='github_link'>GitHub</a></li>
@@ -41,7 +41,6 @@
 		{% endblock %}
 		{% block aside %}
 		{% endblock %}
-        <div class='clearfix'></div>
       </div>
     </div>
     <div id='footer'>
