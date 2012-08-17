@@ -6,33 +6,6 @@
 <link href="{% static 'codes/css/markdown.css' %}" rel="stylesheet" type="text/css"/>
 {% endblock %}
 {% load url from future %}
-{% block script %}
-{{ block.super }}
-function add_comment() {
-	comment_holder = $("#comment_holder");
-	$.post("{% url 'code_comment' code.slug %}", {
-			author: $("#comment_author").val(),
-			title: $("#comment_title").val(),
-			email: $("#comment_email").val(),
-			body: $("#comment_body").val(),
-			'csrfmiddlewaretoken': '{{ csrf_token }}'
-		}, 
-		function(data){
-			jQuery.each(data, function(index, comment) {
-			comment_holder.append('<div class="comment">'
-	        + '<div style="padding-left:2px;font-size:100%;color:#191970">'
-			+ comment.fields.author
-			+ '<span class="time"> - '
-			+ new Date(comment.fields.created)
-			+ '</span></div>'
-	        + '<div style="padding-left:2px;font-size:90%;color:#708090;"><p>'
-			+ comment.fields.body.replace(/(\r\n|\n\r|\r|\n)/g, '<br/>')
-			+ '</p></div></div><br/>');
-			});
-		}
-	);
-}
-{% endblock %}
 
 {% block content %}
 <div id="home_left" class="home_box">
@@ -42,29 +15,7 @@ function add_comment() {
 	  <h1><a href='{% url 'code_content' code.slug %}'>{{code.title}}</a></h1>
 	  <div class='body'>{{ code.html_body|safe }}</div>
 	</div>
-{% if comments %}
-    <h2><span class="color_h1">Comments:</span></h2>
-{% endif %}
-<div id="comment_holder">
-{% for comment in comments %}
-    <div class="comment">
-	        <div style="padding-left:2px;font-size:100%;color:#191970">{{ comment.author }}<span class="time"> - {{ comment.created }}</span></div>
-	        <div style="padding-left:2px;font-size:90%;color:#708090;">{{ comment.body|linebreaks }}</div>
-    </div>
-	<br/>
-{% endfor %}
-</div>
-
-<h2><span class="color_h1">Add a comment:</span></h2>
-<!-- Comment form  -->
-<div style="border-style:dashed;border-width:1px;border-radius:5px;border-color:#98bf21;">
-	<table>
-		<tr><td>Name:</td><td><input id="comment_author" type="text" name="comment_author" maxlength="63"/></td></tr>
-		<tr><td>Email:</td><td><input id="comment_email" type="text" name="comment_email" maxlength="75"/></td></tr>
-		<tr><td>Title:</td><td><input id="comment_title" type="text" name="comment_title" maxlength="63"/></td></tr>
-	    <tr><td valign="top">Comment:</td><td valign="top"><textarea id="comment_body" rows="7" cols="80" name=comment_"body"></textarea></td></tr>
-		<tr><td colspan="2" style="text-align:right;"><input class="button" type="button" value="Submit" onclick="add_comment()"/></td></tr>
-    </table>
-</div>
+	{% load disqus_tags %}
+	{% disqus_show_comments %}
 </div>
 {% endblock %}

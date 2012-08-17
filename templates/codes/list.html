@@ -19,7 +19,9 @@
 	  {# endif #}
 	  <h1><a href='{% url 'code_content' code.slug %}'>{{code.title}}</a></h1>
 	  <div class='body'>{{ code.body|slice_lines:16|markdown:"codehilite" }}</div>
-	  <a href="{% url 'codes.views.code' code.slug %}#comment_holder">Comments</a>
+	  {% load disqus_tags %}
+	  <a href="{% url 'codes.views.code' code.slug %}#disqus_thread">View Comments</a>
+	  {% disqus_num_replies %}
 	</div>
 	{% endfor %}
 	{% if not code_list %}
