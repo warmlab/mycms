@@ -12,7 +12,7 @@
 	{% load url from future %}
 	<div class='post'>
 	  <span class='date'>{{code.modified}}</span>
-	  <h1><a href='{% url 'code_content' code.slug %}'>{{code.title}}</a></h1>
+	  <h1>{{code.title}}</h1>
 	  <div class='body'>{{ code.html_body|safe }}</div>
 	</div>
 	{% load disqus_tags %}

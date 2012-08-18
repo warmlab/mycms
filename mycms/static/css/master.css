@@ -45,11 +45,22 @@
 }
 
 #menu ul li a#blog_link { background-image: url(/static/images/blog.gif); }
+#menu ul li a#apps_link { background-image: url(/static/images/apps.png); }
 #menu ul li a#github_link { background-image: url(/static/images/github.gif); }
 #menu ul li a#about_link { background-image: url(/static/images/about.gif); }
 
 #content {
   padding: 2em 0;
+}
+
+a {
+color: #583;
+font-weight: bold;
+text-decoration: none;
+}
+
+a:visited {
+color: #260;
 }
 
 span.date {
@@ -82,7 +93,26 @@ div.post {
   color: #333;
 }
 
-.post h1 a, #footer {
+.post h1 {
+  text-decoration: none;
+  clear: left;
+  display: block;
+  color: black;
+  padding: 0.3em 0.5em;
+  margin: 0 0 0.2em 0;
+  font-weight: bold;
+  background: #f8f8f8 url(/static/images/header_gradient.gif) repeat-x bottom;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.6);
+  z-index: 10000;
+}
+
+.post h1 a {
+  font-weight: bold;
+  color: #000;
+  z-index: 10000;
+}
+
+#footer {
   text-decoration: none;
   clear: left;
   display: block;

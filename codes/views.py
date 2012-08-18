@@ -9,8 +9,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 
 from codes.models import *
 
-import logging
-logger = logging.getLogger('mycms.debug')
+PAGE_NUM = 5
 
 def category(request, slug):
 	categories = Category.objects.all()
@@ -18,7 +17,7 @@ def category(request, slug):
 	codes = Code.objects.filter(category=category).order_by('-modified')
 	heading = "Category: %s" % category.label
 
-	paginator = Paginator(codes, 2)
+	paginator = Paginator(codes, PAGE_NUM)
 
 	try: page = int(request.GET.get("page", "1"))
 	except ValueError: page = 1
@@ -34,7 +33,7 @@ def list(request):
 	categories = Category.objects.all()
 
 	codes = Code.objects.all().order_by('-modified')
-	paginator = Paginator(codes, 2)
+	paginator = Paginator(codes, PAGE_NUM)
 
 	try: page = int(request.GET.get("page", "1"))
 	except ValueError: page = 1

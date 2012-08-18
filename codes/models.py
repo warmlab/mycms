@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 from django.db import models
 from django.db.models import permalink, signals
 
@@ -8,9 +8,6 @@ from django.contrib.auth.models import User
 from django.dispatch import receiver
 
 from markdown import markdown
-
-import logging
-logger = logging.getLogger('mycms.debug')
 
 VIEWABLE_STATUS = [3, 4]
 class ViewableManager(models.Manager):
@@ -33,7 +30,7 @@ class Category(models.Model):
 
 class CategoryAdmin(admin.ModelAdmin):
 	prepopulated_fields = {'slug': ('label',)}
-	search_field = ['name']
+	search_field = ['label']
 
 class Lang(models.Model):
 	name = models.CharField(max_length=7);
@@ -69,11 +66,11 @@ class Code(models.Model):
 	def save(self):
 		# The codehilite extension for the markdown library adds the pygments code highlighting support
 		self.html_body = markdown(self.body, ['codehilite'])
-		self.modified = datetime.datetime.now()
+		self.modified = datetime.now()
 		super(Code, self).save()
 
 	class Meta:
-		ordering = ['modified']
+		ordering = ['-modified']
 		verbose_name_plural = 'codes'
 
 	admin_objects = models.Manager()
