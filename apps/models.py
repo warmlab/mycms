@@ -5,9 +5,11 @@ from django.contrib import admin
 # Create your models here.
 
 class Application(models.Model):
-	name = models.CharField(max_length=63)
+	name = models.CharField(max_length=64)
 	slug = models.SlugField()
 	version = models.CharField(max_length=16)
+	author = models.CharField(max_length=128)
+	icon = models.ImageField(upload_to='images/apps')
 	desc = models.TextField()
 	ios_url = models.URLField(null=True, blank=True)
 	android_url = models.URLField(null=True, blank=True)

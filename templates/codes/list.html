@@ -10,12 +10,13 @@
 	{% load url from future %}
 	{% load markup %}
 	{% load code_filter %}
+	{% load humanize %}
 <div id="home_left" class="home_box">
   {# <h2><a href='http://feeds2.feedburner.com/mbleigh' class='float-right'><img src="{% static 'images/subscribe-icon.gif' %}" alt="Subscribe"/></a>Latest Blog Post</h2> #}
 	{% for code in code_list %}
 	<div class='post'>
 	  {# if not forloop.first #}
-	  <span class='date'>{{code.modified}}</span>
+	  <span class='date'>{{code.modified|naturalday|capfirst}}</span>
 	  {# endif #}
 	  <h1><a href='{% url 'code_content' code.slug %}'>{{code.title}}</a></h1>
 	  <div class='body'>{{ code.body|slice_lines:16|markdown:"codehilite" }}</div>

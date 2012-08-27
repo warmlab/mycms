@@ -12,7 +12,7 @@ from codes.models import *
 PAGE_NUM = 5
 
 def category(request, slug):
-	categories = Category.objects.all()
+	categories = Category.objects.filter(num__gt=0)
 	category = get_object_or_404(Category, slug=slug)
 	codes = Code.objects.filter(category=category).order_by('-modified')
 	heading = "Category: %s" % category.label
@@ -30,7 +30,7 @@ def category(request, slug):
 	return render_to_response("codes/list.html", locals())
 
 def list(request):
-	categories = Category.objects.all()
+	categories = Category.objects.filter(num__gt=0)
 
 	codes = Code.objects.all().order_by('-modified')
 	paginator = Paginator(codes, PAGE_NUM)
@@ -45,14 +45,14 @@ def list(request):
 	return render_to_response("codes/list.html", dict(categories=categories, codes=codes, user=request.user, code_list=codes.object_list))
 
 def code(request, slug):
-	categories = Category.objects.all()
+	categories = Category.objects.filter(num__gt=0)
 	code = Code.objects.get(slug=slug)
 	d = dict(categories=categories, code=code, user=request.user)
 	d.update(csrf(request))
 	return render_to_response("codes/code.html", d)
 
 def search(request):
-	categories = Category.objects.all()
+	categories = Category.objects.filter(num__gt=0)
 	if 'q' in request.GET:
 		term = request.GET['q']
 		code_list = Code.objects.filter(Q(title__contains=term)

@@ -9,15 +9,18 @@ from django.dispatch import receiver
 
 from markdown import markdown
 
+import logging
+logger = logging.getLogger('mycms.debug')
+
 VIEWABLE_STATUS = [3, 4]
-class ViewableManager(models.Manager):
+class CodeViewableManager(models.Manager):
 	def get_query_set(self):
-		default_queryset = super(ViewableManager, self).get_query_set()
+		default_queryset = super(CodeViewableManager, self).get_query_set()
 		return default_queryset.filter(status__in=VIEWABLE_STATUS)
 	search_field = ['name']
 
 class Category(models.Model):
-	label = models.CharField(max_length=63);
+	label = models.CharField(max_length=64);
 	slug = models.SlugField()
 	num = models.IntegerField(default=0, editable=False)
 	desc = models.TextField(null=True, blank=True)
@@ -33,7 +36,7 @@ class CategoryAdmin(admin.ModelAdmin):
 	search_field = ['label']
 
 class Lang(models.Model):
-	name = models.CharField(max_length=7);
+	name = models.CharField(max_length=8);
 	desc = models.TextField(null=True, blank=True)
 
 	def __unicode__(self):
@@ -51,7 +54,7 @@ class Code(models.Model):
 			(4, "Archived"),
 		)
 
-	title = models.CharField(max_length=127)
+	title = models.CharField(max_length=256)
 	slug = models.SlugField()
 	nice = models.SmallIntegerField(default=5)
 	status = models.IntegerField(choices=STATUS_CHOICES, default=1)
@@ -74,7 +77,7 @@ class Code(models.Model):
 		verbose_name_plural = 'codes'
 
 	admin_objects = models.Manager()
-	objects = ViewableManager()
+	objects = CodeViewableManager()
 
 	@permalink
 	def get_absolute_url(self):
@@ -86,17 +89,26 @@ class Code(models.Model):
 class CodeAdmin(admin.ModelAdmin):
 	search_field = ['title']
 
-@receiver(signals.post_save, sender=Code)
-def update_category_num(sender, **kwargs):
-	if kwargs['created']:
-		category = kwargs['instance'].category
-		category.num += 1
+@receiver(signals.pre_save, sender=Code)
+def update_pre_category_num(sender, **kwargs):
+	instance = kwargs['instance']
+	if instance.pk:
+		code = Code.admin_objects.get(pk=instance.pk)
+		category = code.category
+		codes = Code.objects.filter(category=category)
+		# Data has not save to db, should to sub 1.
+		if code.status in VIEWABLE_STATUS:
+			category.num = len(codes) - 1
+		else:
+			category.num = len(codes)
 		category.save()
 
+@receiver(signals.post_save, sender=Code)
 @receiver(signals.post_delete, sender=Code)
 def update_category_num(sender, **kwargs):
 	category = kwargs['instance'].category
-	category.num -= 1
+	codes = Code.objects.filter(category=category)
+	category.num = len(codes)
 	category.save()
 
 admin.site.register(Category, CategoryAdmin)
