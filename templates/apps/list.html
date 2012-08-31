@@ -10,7 +10,8 @@
 <div id="home_left" class="home_box">
 	{% for app in app_list %}
 	<div class='post'>
-	  <h1><a href='{% url 'app_content' app.slug %}'>{{app.name}}</a></h1>
+	  <img src="/media/{{app.icon}}" border="0" alt="{{ app.name }}" align="right">
+		<h1><a href='{% url 'app_content' app.slug %}'>{{app.name}}</a></h1></img>
 	  <div class='body'>{{ app.desc|markdown }}</div>
 	  {% load disqus_tags %}
 	  <a href="{% url 'apps.views.app' app.slug %}#disqus_thread">View Comments</a>

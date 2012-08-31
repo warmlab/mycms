@@ -9,7 +9,7 @@
 <div id="home_left" class="home_box">
 	{% load url from future %}
 	<div class='post'>
-	  <h1><img src="/media/{{app.icon}}" width="40px" alt="{{ app.name }}"/>{{ app.name }}</h1>
+	  <img src="/media/{{app.icon}}" border="0" alt="{{ app.name }}" align="right"><h1>{{ app.name }}</h1></img>
 	  <h2>Version: {{ app.version }}</h2>
 	  {% load markup %}
 	  <div class='body'>{{ app.desc|markdown }}</div>
