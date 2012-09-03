@@ -18,20 +18,25 @@
 	  {# if not forloop.first #}
 	  <span class='date'>{{code.modified|naturalday|capfirst}}</span>
 	  {# endif #}
-	  <h1><a href='{% url 'code_content' code.slug %}'>{{code.title}}</a></h1>
+	  {% if code.icon %}
+	  <img src="/media/{{code.icon}}" width="100" border="0" alt="{{ code.title }}" align="right">
+	  <h1><a href='{% url 'code_content' code.slug %}'>{{code.title}}</a></h1></img>
+	  {% else %}
+	  <img src="/static/images/feather.png" border="0" alt="{{ code.title }}" align="right">
+	  <h1><a href='{% url 'code_content' code.slug %}'>{{code.title}}</a></h1></img>
+	  {% endif %}
 	  <div class='body'>{{ code.body|slice_lines:16|markdown:"codehilite" }}</div>
 	  {% load disqus_tags %}
 	  <a href="{% url 'codes.views.code' code.slug %}#disqus_thread">View Comments</a>
 	  {% disqus_num_replies %}
 	</div>
-	{% endfor %}
-	{% if not code_list %}
+	{% empty %}
 	<div class='post'>
 	  <h2>No Blog</h2>
 	  <h1>No Thing</h1>
 	  <div class='body'>There is no content just now!</div>
 	</div>
-	{% endif %}
+	{% endfor %}
 
 	{% if code_list and codes.paginator.num_pages > 1 %}
 	<div class="chapter">

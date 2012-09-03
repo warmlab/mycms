@@ -13,7 +13,13 @@
 	{% load url from future %}
 	<div class='post'>
 	  <span class='date'>{{code.modified|naturalday|capfirst}}</span>
-	  <h1>{{code.title}}</h1>
+	  {% if code.icon %}
+	  <img src="/media/{{code.icon}}" width="100" border="0" alt="{{ code.title }}" align="right">
+	  <h1>{{code.title}}</h1></img>
+	  {% else %}
+	  <img src="/static/images/feather.png" border="0" alt="{{ code.title }}" align="right">
+	  <h1>{{code.title}}</h1></img>
+	  {% endif %}
 	  <div class='body'>{{ code.html_body|safe }}</div>
 	</div>
 	{% load disqus_tags %}

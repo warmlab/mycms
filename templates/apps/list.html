@@ -17,14 +17,13 @@
 	  <a href="{% url 'apps.views.app' app.slug %}#disqus_thread">View Comments</a>
 	  {% disqus_num_replies %}
 	</div>
-	{% endfor %}
-	{% if not app_list %}
+	{% empty %}
 	<div class='post'>
 	  <h2>No Application</h2>
 	  <h1>No Thing</h1>
 	  <div class='body'>There is no content just now!</div>
 	</div>
-	{% endif %}
+	{% endfor %}
 
 	{% if app_list and apps.paginator.num_pages > 1 %}
 	<div class="chapter">

@@ -61,6 +61,7 @@ class Code(models.Model):
 	owner = models.ForeignKey(User)
 	category = models.ForeignKey(Category)
 	lang = models.ForeignKey(Lang)
+	icon = models.ImageField(upload_to='images/codes', null=True, blank=True)
 	body = models.TextField()
 	html_body = models.TextField(editable=False)
 	created = models.DateTimeField(auto_now_add=True)
