@@ -1,13 +1,8 @@
 {% extends "codes/base.html" %}
-{% block style %}
-{% load static %}
-<link href="{% static 'codes/css/code.css' %}" rel="stylesheet" type="text/css"/>
-<link href="{% static 'codes/css/emacs.css' %}" rel="stylesheet" type="text/css"/>
-<link href="{% static 'codes/css/markdown.css' %}" rel="stylesheet" type="text/css"/>
-{% endblock %}
 {% load url from future %}
 {% load humanize %}
-
+{% load markup %}
+{% load static %}
 {% block content %}
 <div id="home_left" class="home_box">
 	{% load url from future %}
@@ -17,7 +12,7 @@
 	  <img src="/media/{{code.icon}}" width="100" border="0" alt="{{ code.title }}" align="right">
 	  <h1>{{code.title}}</h1></img>
 	  {% else %}
-	  <img src="/static/images/feather.png" border="0" alt="{{ code.title }}" align="right">
+	  <img src="{% static 'images/feather.png' %}" border="0" alt="{{ code.title }}" align="right">
 	  <h1>{{code.title}}</h1></img>
 	  {% endif %}
 	  <div class='body'>{{ code.html_body|safe }}</div>

@@ -5,10 +5,10 @@
 	<title>WarmLab</title>
 	{% load static %}
 	<link rel="shortcut icon" href="favicon.ico"/>
-	{#<link href="{% static 'css/base.css' %}" rel="stylesheet" type="text/css"/>#}
-    <link href="{% static 'css/master.css' %}" rel="stylesheet" type="text/css" charset="utf-8"/>
+	<link href="{% static 'css/base.css' %}" rel="stylesheet" type="text/css" charset="utf-8"/>
+	{% load static %}
 	{% block style %}{% endblock %}
-	<script language="javascript" type="text/javascript" src="/static/js/jquery.js"></script>
+	{#<script language="javascript" type="text/javascript" src="/static/js/jquery.js"></script>#}
 	<script type="text/javascript" language="javascript">
 	{% block script %}{% endblock %}
 	</script>
@@ -24,13 +24,16 @@
 <body>
     <div id='wrapper'>
       <div id='header'>
-        <h1><a href='/'></a></h1>
+		<h1><a href="/"><img src="{% static 'images/title.png' %}"/></a></h1>
         <div id='menu'>
           <ul>
+            <li><a href='/' title='Blog'><img src="{% static 'images/blog.gif' %}"/></a></li>
+            <li><a href='/apps' title='Apps'><img src="{% static 'images/apps.png' %}"/></a></li>
+            <li><a href='/about' title='About'><img src="{% static 'images/about.gif' %}"/></a></li>
+			{% comment %}
             <li><a href='/' id='blog_link' title='Blog'></a></li>
             <li><a href='/apps' id='apps_link' title='Apps'></a></li>
             <li><a href='/about' id='about_link' title='About'></a></li>
-			{% comment %}
             <li><a href='/' id='home_link' title='Home'>Home</a></li>
             <li><a href='http://github.com/warmlab' target='_blank' title='GitHub' rel='me' id='github_link'>GitHub</a></li>
 			{% endcomment %}
@@ -38,15 +41,12 @@
         </div>
       </div>
       <div id='content'>
-        {% block content %}
-		{% endblock %}
-		{% block aside %}
-		{% endblock %}
+        {% block content %}{% endblock %}
+		{% block aside %}{% endblock %}
       </div>
     </div>
     <div id='footer'>
       Copyright &copy; 2012 WarmLab. Some rights reserved.Templates from <a href='http://github.com/mbleigh/mbleigh.github.com/' target='_blank'>Michael Bleigh</a>.
     </div>
-  </body>
 </body>
 </html>

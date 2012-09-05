@@ -162,7 +162,7 @@ LOGGING = {
 		'file': {
 			'level': 'DEBUG',
 			'class': 'logging.FileHandler',
-			'filename': 'mycms.log',
+			'filename': '/var/log/mycms/debug.log',
 		},
 		'mail_admins': {
 			'level': 'ERROR',

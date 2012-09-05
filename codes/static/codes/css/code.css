@@ -1,83 +1,98 @@
-div.comment {
-	border-style:dashed;
-	border-width:1px;
-	border-color:#98bf21;
-	border-radius:5px;
+div.chapter {
+color: #583;
+font-weight: bold;
+font-size:90%;
+margin:0px;
+padding:0px;
+width:100%;
+height:20px;
+text-align:right;
 }
-div#submit {
-	text-align: right;
+
+table.codehilitetable {
+box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+/*font-size: 100%;
+border-padding:0;
+border-spacing:0;*/
 }
+
+/* Start inline code */
+/* End inline code */
+div.linenodiv pre {
+font-family: Monaco,"Andale Mono","lucida console","Courier New",monospace;
+font-size:90%;
+padding-left: 5px;
+text-align: right;
+}
+
+div.codehilite {
+border: 1px solid #d9d9d9;
+/*background-color: #EDF5FF; */
+background-color: #d9d9d9;
+box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+border-radius: 15px;
+}
+
+div.codehilite pre {
+font-family: Monaco,"Andale Mono","lucida console","Courier New",monospace;
+font-size:90%;
+padding: 0px;
+overflow: auto; overflow-y:hidden
+}
+
+/*
 .button {
-	//border-right: #6a6a6a 1px solid;
-	//padding-right: 10px;
-	//border-top: #fff 1px solid;
-	border: #98bf21 1px solid;
-	border-radius: 5px;
-	//padding-left: 10px;
-	font-size: 100%;
-	background: #98bf21;
-	//padding-bottom: 3px;
-	//border-left: #fff 1px solid;
-	//cursor: pointer;
-	color: #6740de;
-	//padding-top: 3px;
-	//border-bottom: #6a6a6a 1px solid;
-	//height: 20px;
+border: #98bf21 1px solid;
+border-radius: 5px;
+font-size: 100%;
+background: #98bf21;
+color: #6740de;
+border-right: #6a6a6a 1px solid;
+padding-right: 10px;
+border-top: #fff 1px solid;
+padding-left: 10px;
+padding-bottom: 3px;
+border-left: #fff 1px solid;
+cursor: pointer;
+padding-top: 3px;
+border-bottom: #6a6a6a 1px solid;
+height: 20px;
 }  
-a.title:link    {text-decoration:none;color:#98bf21;background-color:transparent;text-shadow: 5px 5px 5px #D8D8D8;}
-a.title:visited {text-decoration:none;color:#98bf21;background-color:transparent;text-shadow: 5px 5px 5px #D8D8D8;}
-a.title:hover   {text-decoration:underline;color:#98bf21;background-color:transparent;text-shadow: 5px 5px 5px #D8D8D8;}
-a.title:active  {text-decoration:none;color:#98bf21;background-color:transparent;text-shadow: 5px 5px 5px #D8D8D8;}
-div.chapter 
-{
-  color: #583;
-  font-weight: bold;
-font-size:90%;margin:0px;padding:0px;width:100%;height:20px;text-align:right;
-}
-div.page {width:40%;float:right;text-align:right;color:#6e9b20;}
-div.chapter div.prev {width:40%;float:left;text-align:left;}
-div.chapter div.next {width:40%;float:right;text-align:right;}
-a.chapter:link    {text-decoration:none;color:#6e9b20;background-color:transparent}
-a.chapter:visited {text-decoration:none;color:#6e9b20;background-color:transparent}
-a.chapter:hover   {text-decoration:underline;color:#6e9b20;background-color:transparent}
-a.chapter:active  {text-decoration:none;color:#6e9b20;background-color:transparent}
 
 .dsq-textarea{margin:0 0 1em 0}
 .dsq-textarea-reply{margin-left:46px;margin-bottom:1.8em}
 .dsq-textarea-background{
-	background:#fff url("../../../images/themes/houdini/backgrounds-sprite.png") 0 -480px repeat-x;
-	width:auto;
-	border:1px solid #c1c1c1;
-	-webkit-border-radius:4px;
-	-moz-border-radius:4px;
-	border-radius:4px;
-	-webkit-box-shadow:inset 0 1px 4px rgba(0,0,0,.16);
-	-moz-box-shadow:inset 0 1px 4px rgba(0,0,0,.16);
-	box-shadow:inset 0 1px 4px rgba(0,0,0,.16);
-	position:relative}.dsq-textarea-wrapper{min-height:60px;
-	padding:10px}.dsq-textarea-wrapper iframe{height:60px;
-	display:block;
-	position:inherit;
-	top:0
+background:#fff url("../../../images/themes/houdini/backgrounds-sprite.png") 0 -480px repeat-x;
+width:auto;
+border:1px solid #c1c1c1;
+-webkit-border-radius:4px;
+-moz-border-radius:4px;
+border-radius:4px;
+-webkit-box-shadow:inset 0 1px 4px rgba(0,0,0,.16);
+-moz-box-shadow:inset 0 1px 4px rgba(0,0,0,.16);
+box-shadow:inset 0 1px 4px rgba(0,0,0,.16);
+position:relative}.dsq-textarea-wrapper{min-height:60px;
+padding:10px}.dsq-textarea-wrapper iframe{height:60px;
+display:block;
+position:inherit;
+top:0
 }
 .dsq-textarea-loading-text{display:none}
 .dsq-textarea-loading .dsq-textarea-loading-text{
-	display:block;
-	color:#666;
-	font-size:13px
+display:block;
+color:#666;
+font-size:13px
 }
 #dsq-textarea textarea{
-	background:transparent;
-	margin:0;
-	padding:0;
-	border:0;
-	width:100%;
-	max-width:100%;
-	min-height:40px;
-	outline:0;
-	font-size:13px;
-	color:#999
+background:transparent;
+margin:0;
+padding:0;
+border:0;
+width:100%;
+max-width:100%;
+min-height:40px;
+outline:0;
+font-size:13px;
+color:#999
 }
-table {
-border-collapse: collapse;
-}
+*/

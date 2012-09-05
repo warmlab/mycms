@@ -1,4 +1,9 @@
 {% extends "base.html" %}
+{% block style %}
+{% load static %}
+<link href="{% static 'codes/css/code.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'codes/css/emacs.css' %}" rel="stylesheet" type="text/css"/>
+{% endblock %}
 {% block aside %}
 <div class='home_box' id='home_right'>
   <h2>Search</h2>
