@@ -2,8 +2,25 @@
 {% block content %}
 {% block leftcolumn %}
 {% endblock %}
-	{% load markup %}
-	{% for about in abouts %}
-	<div>{{ about.desc|markdown }} </div>
-	{% endfor %}
+{% load markup %}
+{% load static %}
+{% for about in abouts %}
+<div id="home_left" class="home_box">
+	<div class="post">
+	  {% if about.photo %}
+	  <img src="/media/{{ about.photo }}" width="100" border="0" alt="{{ about.title }}" align="right">
+	  <h1>{{about.title}}</h1></img>
+	  {% else %}
+	  <img src="{% static 'images/about_us.png' %}" border="0" alt="{{ about.title }}" align="right">
+	  <h1>{{ about.title }}</h1></img>
+	  {% endif %}
+	<div class="body">{{ about.desc|markdown }}</div>
+	</div>
+	{% empty %}
+	<div class='post'>
+	  <h1>No About</h1>
+	  <div class='body'>There is no introduce just now!</div>
+	</div>
+{% endfor %}
+</div>
 {% endblock %}

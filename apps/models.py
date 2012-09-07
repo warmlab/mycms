@@ -1,5 +1,6 @@
 from datetime import datetime
 from django.db import models
+from django.db.models import permalink
 from django.contrib import admin
 
 # Create your models here.
@@ -27,8 +28,30 @@ class Application(models.Model):
 	def __unicode__(self):
 		return self.name
 
+class Image(models.Model):
+	title = models.CharField(max_length=64)
+	slug = models.SlugField()
+	app = models.ForeignKey(Application)
+	image = models.ImageField(upload_to="images/apps/img")
+	caption = models.CharField(max_length=256, blank=True, null=True)
+
+	class Meta:
+		ordering = ['title']
+
+	def __unicode__(self):
+		return self.title
+
+	@permalink
+	def get_absolute_url(self):
+		return ('app_image', None, {'slug': self.slug})
+
+class ImageInline(admin.StackedInline):
+	model = Image
+
 class ApplicationAdmin(admin.ModelAdmin):
 	prepopulated_fields = {'slug': ('name',)}
 	search_field = ['name']
+	inlines = [ImageInline]
 
 admin.site.register(Application, ApplicationAdmin)
+admin.site.register(Image)

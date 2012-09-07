@@ -87,8 +87,29 @@ class Code(models.Model):
 	def __unicode__(self):
 		return self.title
 
+class Image(models.Model):
+	title = models.CharField(max_length=64)
+	slug = models.SlugField()
+	code = models.ForeignKey(Code)
+	image = models.ImageField(upload_to="images/codes/img")
+	caption = models.CharField(max_length=256, blank=True, null=True)
+
+	class Meta:
+		ordering = ['title']
+
+	def __unicode__(self):
+		return self.title
+
+	@permalink
+	def get_absolute_url(self):
+		return ('code_image', None, {'slug': self.slug})
+
+class ImageInline(admin.StackedInline):
+	model = Image
+
 class CodeAdmin(admin.ModelAdmin):
 	search_field = ['title']
+	inlines = [ImageInline]
 
 @receiver(signals.pre_save, sender=Code)
 def update_pre_category_num(sender, **kwargs):
@@ -115,3 +136,4 @@ def update_category_num(sender, **kwargs):
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Lang, LangAdmin)
 admin.site.register(Code, CodeAdmin)
+admin.site.register(Image)
