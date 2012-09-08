@@ -13,7 +13,7 @@
 	  <h2>Version: {{ app.version }}</h2>
 	  {% load markup %}
 	  <div class='body'>{{ app.desc|markdown }}</div>
-	  <div><a href="{{app.ios_url}}"><img src="{% static 'apps/images/asl.png' %}"/></a></div>
+	  <div><a href="{{app.ios_url}}" target="_blank"><img src="{% static 'apps/images/asl.png' %}"/></a></div>
 	</div>
 	{% load disqus_tags %}
 	{% disqus_show_comments %}

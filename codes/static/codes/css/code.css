@@ -1,10 +1,19 @@
 table.codehilitetable {
-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 width: 100%;
+margin:0px;
 /*font-size: 100%;
 border-padding:0;
 border-spacing:0;*/
 }
+
+td.code div.codehilite pre {
+font-family: Monaco,"Andale Mono","lucida console","Courier New",monospace;
+font-size:90%;
+padding: 0px;
+width:650px;
+overflow: auto; overflow-y:hidden
+}
+
 
 div.chapter {
 color: #583;
