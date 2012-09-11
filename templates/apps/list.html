@@ -5,10 +5,9 @@
 {% endblock %}
 
 {% block content %}
-	{% load url from future %}
-	{% load markup %}
-<div id="home_left" class="home_box">
-	{% for app in app_list %}
+{% load url from future %}
+{% load markup %}
+{% for app in app_list %}
 	<div class='post'>
 	  <img src="/media/{{app.icon}}" border="0" alt="{{ app.name }}" align="right">
 		<h1><a href='{% url 'app_content' app.slug %}'>{{app.name}}</a></h1></img>
@@ -35,6 +34,5 @@
 		<a href="?page={{ apps.next_page_number }}">Older &raquo;</a>
 		{% endif %}
 	</div>
-	{% endif %}
-</div>
+{% endif %}
 {% endblock %}

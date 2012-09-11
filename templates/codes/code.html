@@ -4,7 +4,6 @@
 {% load markup %}
 {% load static %}
 {% block content %}
-<div id="home_left" class="home_box">
 	{% load url from future %}
 	<div class='post'>
 	  <span class='date'>{{code.modified|naturalday|capfirst}}</span>
@@ -19,5 +18,4 @@
 	</div>
 	{% load disqus_tags %}
 	{% disqus_show_comments %}
-</div>
 {% endblock %}

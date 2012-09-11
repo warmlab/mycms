@@ -5,9 +5,8 @@
 {% load code_filter %}
 {% load humanize %}
 {% load static %}
-<div id="home_left" class="home_box">
   {# <h2><a href='http://feeds2.feedburner.com/mbleigh' class='float-right'><img src="{% static 'images/subscribe-icon.gif' %}" alt="Subscribe"/></a>Latest Blog Post</h2> #}
-	{% for code in code_list %}
+{% for code in code_list %}
 	<div class='post'>
 	  {# if not forloop.first #}
 	  <span class='date'>{{code.modified|naturalday|capfirst}}</span>
@@ -43,6 +42,5 @@
 		<a href="?page={{ codes.next_page_number }}">Older &raquo;</a>
 		{% endif %}
 	</div>
-	{% endif %}
-</div>
+{% endif %}
 {% endblock %}
