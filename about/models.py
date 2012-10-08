@@ -8,9 +8,9 @@ class About(models.Model):
 	desc = models.TextField()
 
 	def __unicode__(self):
-		return self.desc
+		return self.title
 
 class AboutAdmin(admin.ModelAdmin):
-	search_field = ['desc']
+	search_field = ['title', 'desc']
 
 admin.site.register(About, AboutAdmin)
