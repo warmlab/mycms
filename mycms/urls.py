@@ -20,6 +20,7 @@ urlpatterns = patterns('',
 #url(r'^codes/tag/(\d+)/$', 'codes.views.list', name='codes_taglist'),
 #url(r'^codes/(\d+)/$', 'codes.views.code'),
 #url(r'^codes/add_comment/(\d+)/$', 'codes.views.add_comment'),
+	url(r'^foods/', include('foods.urls')),
 
 	url(r'^about/$', 'about.views.about'),
 

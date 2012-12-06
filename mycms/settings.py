@@ -129,6 +129,7 @@ INSTALLED_APPS = (
 	'gunicorn',
 	'codes',
 	'apps',
+	'foods',
 	'about',
 	'disqus',
 )
