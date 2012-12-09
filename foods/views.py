@@ -6,19 +6,26 @@ import json
 from foods.models import *
 
 def get_update_data(version):
-	v = Version.objects.get(current = True)
+	v = None
+	try:
+		v = Version.objects.get(current = True)
+	except:
+		pass
 
-	if v.version <= version:
+	if not v or v.version <= version:
 		return ""
-		
+
 	foods = Food.objects.filter(version__gt = version)
 	relations = Relation.objects.filter(version__gt = version)
-	alias = Alias.objects.filter(version__gt = version)
+	alias = []
+	for f in foods:
+		a = Alias.objects.filter(food = f)
+		alias.extend([o for o in a])
 
 	dic = {"foods": [f for f in foods], "relations": [r for r in relations],
-			"alias": [a for a in alias]}
+			"alias": alias}
 	
-	return json.dumps(dic, default=lambda o:o.__dict__)
+	return json.dumps(dic, default=lambda o:o.__dict__.pop('_state') and o.__dict__ or o.__dict__)
 
 def update_all(request):
 	if request.method != 'GET':
@@ -79,19 +86,20 @@ def get_alias(request):
 	if request.method != 'GET':
 		return HttpResponse(status = 405) # Method Not Allowed
 
-	version = request.GET.get('version')
-	try: version = int(version)
+	food = request.GET.get('food')
+	try: food = int(food)
 	except: return HttpResponse(status = 406) # Not Acceptable
 
-	pk = request.GET.get('alias')
-	try: pk = int(pk)
-	except: return HttpResponse(status = 406) # Not Acceptable
+	food = Food.objects.get(pk=food)
+	if not food:
+		return HttpResponse(status = 404)
 
 	try:
-		alias = Alias.objects.get(pk=pk)
+		alias = Alias.objects.filter(food=food)
 
-		if alias.version > version:
-			return HttpResponse(alias.to_json(), mimetype='application/json')
+		if alias:
+			dic = {'alias': [a for a in alias]}
+			return HttpResponse(json.dumps(dic, default=lambda o:o.__dict__.pop('_state') and o.__dict__ or o.__dict__), mimetype='application/json')
 	except:
 		pass
 
