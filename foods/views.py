@@ -1,4 +1,6 @@
 # Create your views here.
+import os.path
+
 from django.http import HttpResponse
 
 import json
@@ -72,6 +74,29 @@ def get_food(request):
 		pass
 
 	return HttpResponse(status = 404)
+
+def get_food_photo(request):
+	if request.method != 'GET':
+		return HttpResponse(status = 405) # Method Not Allowed
+
+	version = request.GET.get('version')
+	try: version = int(version)
+	except: return HttpResponse(status = 406) # Not Acceptable
+
+	food = request.GET.get('food')
+	path = "foods/images/%s.png" % food
+	if not os.path.isfile(path):
+		return HttpResponse(status = 404) # Not Found
+	f = open(path, "r")
+	content = ""
+	tmp = f.read()
+	while tmp:
+		content = content + tmp
+		tmp = f.read()
+	response = HttpResponse(content, content_type = "image/png")
+	response['Content-Length'] = len(content)
+
+	return response
 
 def get_relation(request):
 	if request.method != 'GET':
