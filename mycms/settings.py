@@ -20,6 +20,18 @@ DATABASES = {
     }
 }
 
+CACHES = {
+	'default': {
+		'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+# 'LOCATION': '127.0.0.1:11211',
+		'LOCATION': 'unix:/tmp/memcached.sock',
+# 'LOCATION': [
+# '172.19.26.240:11211',
+# '172.19.26.242:11211',
+# ]
+	}
+}
+
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
